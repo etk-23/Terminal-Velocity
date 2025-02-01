@@ -1,5 +1,9 @@
 # Terminal-Velocity - Linux Command Learning-Platform
-Mini project for S6 
+Mini project for S6 - Computer Science Engineering
+
+### Project Team:
+ - @etk-23
+ - Giga4byte
 
 
 ### Relevance of the Domain:  
