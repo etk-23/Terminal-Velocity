@@ -2,8 +2,8 @@
 Mini project for S6 - Computer Science Engineering
 
 ### Project Team:
- - @etk-23
- - Giga4byte
+ - etk-23 (Back-End)
+ - Giga4byte (Front-End)
 
 
 ### Relevance of the Domain:  
