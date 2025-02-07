@@ -36,76 +36,69 @@ The Linux learning game is a standalone web application created to help users de
   - Feedback Mechanism: Offer immediate feedback on user actions, including error explanations and suggestions for improvement.
   - User Management: Allow users to create and manage accounts to personalize their learning experience and save progress.
 
-
-Operating Environment
+#### 2.3 Operating Environment
 The Linux learning game will operate within the following environment:
 Hardware Platform
-Client-Side: A standard laptop or desktop computer with basic computing capabilities, including at least 4GB RAM, a modern processor capable of running a web browser efficiently and internet connection for accessing online features.
-Server-Side: A standard server setup or cloud instance with sufficient resources (e.g., 2 vCPUs, 8GB RAM, and 50GB storage) to host the application.
+  - Client-Side: A standard laptop or desktop computer with basic computing capabilities, including at least 4GB RAM, a modern processor capable of running a web browser efficiently and internet connection for accessing online features.
+  - Server-Side: A standard server setup or cloud instance with sufficient resources (e.g., 2 vCPUs, 8GB RAM, and 50GB storage) to host the application.
 Operating Systems
-Client-Side: Compatible with commonly used operating systems such as:
-Windows 10 and later
-macOS 10.14 and later 
+  - Client-Side: Compatible with commonly used operating systems such as:
+Windows 10 and later, 
+macOS 10.14 and later,  
 Linux distributions (e.g., Ubuntu, Fedora)
-Server-Side: Runs on a Linux-based server operating system, such as Ubuntu 20.04 LTS or equivalent, optimized for hosting web applications.
+  - Server-Side: Runs on a Linux-based server operating system, such as Ubuntu 20.04 LTS or equivalent, optimized for hosting web applications.
 
-Design and Implementation Constraints
-2.4.1. Limited Backend Processing Power:
-Due to the restricted nature of the web application, the backend should be optimized for basic operations. Heavy computations, complex algorithms, or high-frequency requests must be avoided to ensure the system runs efficiently within limited resources.
-2.4.2. Basic User Authentication: 
-The authentication system is required to be simple and must rely on Firebase's built-in authentication mechanisms. Developers will have limited flexibility to customize or extend authentication features beyond what Firebase offers out-of-the-box.
-2.4.3. Limited Database Structure:
-The database should be designed for lightweight, minimal storage and querying. Developers will need to optimize data models for basic tracking of user progress, and badges. Complex relational database queries or large data structures may not be feasible.
-2.4.4. No Real-Time Collaboration:
-The system does not support features that enable real-time collaboration or multiplayer functionality due to backend and frontend limitations. User interactions are isolated, and any need for simultaneous interaction between users must be avoided.
-2.4.5. Cross-Browser Compatibility:
-The game must be designed for compatibility with modern web browsers, but the scope is limited to basic HTML, Tailwind CSS, and JavaScript. Advanced browser-specific features should be avoided to maintain simplicity and cross-browser consistency.
-2.4.6. Basic Level Security Practices:
-The application must adhere to basic security best practices, such as input validation, data encryption, and secure token storage for Firebase authentication. However, there will be no complex security features like multi-factor authentication, user role management.
+#### 2.4 Design and Implementation Constraints
+  - Limited Backend Processing Power: Due to the restricted nature of the web application, the backend should be optimized for basic operations. Heavy computations, complex algorithms, or high-frequency requests must be avoided to ensure the system runs efficiently within limited resources.
+  - Basic User Authentication: The authentication system is required to be simple and must rely on Firebase's built-in authentication mechanisms. Developers will have limited flexibility to customize or extend authentication features beyond what Firebase offers out-of-the-box.
+  - Limited Database Structure: The database should be designed for lightweight, minimal storage and querying. Developers will need to optimize data models for basic tracking of user progress, and badges. Complex relational database queries or large data structures may not be feasible.
+  - No Real-Time Collaboration:The system does not support features that enable real-time collaboration or multiplayer functionality due to backend and frontend limitations. User interactions are isolated, and any need for simultaneous interaction between users must be avoided.
+  - Cross-Browser Compatibility: The game must be designed for compatibility with modern web browsers, but the scope is limited to basic HTML, Tailwind CSS, and JavaScript. Advanced browser-specific features should be avoided to maintain simplicity and cross-browser consistency.
+  - Basic Level Security Practices: The application must adhere to basic security best practices, such as input validation, data encryption, and secure token storage for Firebase authentication. However, there will be no complex security features like multi-factor authentication, user role management.
 
-Assumptions and Dependencies
-2.5.1 Assumptions:
-Availability of Firebase Services: It is assumed that Firebase services (Authentication and Database) will remain available and accessible for the project. Any changes or outages in Firebase's offerings, pricing models, or availability could affect the project's implementation.
-Internet Access for Users: The game assumes users will have consistent internet access. If there are scenarios where users have intermittent or no internet, the game’s functionality (especially involving authentication or game progress) could be limited.
-Browser Compatibility: It is assumed that users will use modern web browsers (e.g., Google Chrome, Mozilla Firefox, Safari), and that all browser updates and standards will align with the features implemented in the project. Issues may arise if users are using outdated browsers or browsers with incomplete support for HTML5, Tailwind CSS, and JavaScript.
-No Complex Infrastructure: The project assumes that there will be no requirement for a complex server infrastructure (e.g., load balancing, multiple servers). If the system scales beyond a basic number of users, there could be performance bottlenecks.
+#### 2.5 Assumptions and Dependencies
+  - Assumptions:
+      - Availability of Firebase Services: It is assumed that Firebase services (Authentication and Database) will remain available and accessible for the project. Any changes or outages in Firebase's offerings, pricing models, or availability could affect the project's implementation.
+      - Internet Access for Users: The game assumes users will have consistent internet access. If there are scenarios where users have intermittent or no internet, the game’s functionality (especially involving authentication or game progress) could be limited.
+      - Browser Compatibility: It is assumed that users will use modern web browsers (e.g., Google Chrome, Mozilla Firefox, Safari), and that all browser updates and standards will align with the features implemented in the project. Issues may arise if users are using outdated browsers or browsers with incomplete support for HTML5, Tailwind CSS, and JavaScript.
+      - No Complex Infrastructure: The project assumes that there will be no requirement for a complex server infrastructure (e.g., load balancing, multiple servers). If the system scales beyond a basic number of users, there could be performance bottlenecks.
 
-2.5.2 Dependencies: 
-Firebase: The project is dependent on Firebase for user authentication and database services. Any updates or service disruptions in Firebase could directly affect the project’s backend functionality.
-Frontend Libraries and Frameworks: The game depends on basic frontend technologies (HTML, Tailwind CSS, JavaScript). Changes in these libraries’ versions or deprecated features could affect the development process.
-User’s Device Performance: The performance of the game depends on the hardware and browser capabilities of users’ devices. If users are on lower-end devices, there could be limitations in rendering the UI or executing the simulated terminal environment.
-Security Compliance: If the project needs to comply with specific security standards (e.g., GDPR, CCPA) for data storage or user authentication, this could introduce additional requirements for the backend and database structure, affecting the scope and design of the project.
-Browser Updates: Assumption is made that major browser updates will not introduce breaking changes to the core web technologies used in the project. If browsers make changes that deprecate essential features, the system may need rework or fixes.
-External Interface Requirements
-User Interfaces
+  - Dependencies: 
+      - Firebase: The project is dependent on Firebase for user authentication and database services. Any updates or service disruptions in Firebase could directly affect the project’s backend functionality.
+      - Frontend Libraries and Frameworks: The game depends on basic frontend technologies (HTML, Tailwind CSS, JavaScript). Changes in these libraries’ versions or deprecated features could affect the development process.
+      - User’s Device Performance: The performance of the game depends on the hardware and browser capabilities of users’ devices. If users are on lower-end devices, there could be limitations in rendering the UI or executing the simulated terminal environment.
+      - Security Compliance: If the project needs to comply with specific security standards (e.g., GDPR, CCPA) for data storage or user authentication, this could introduce additional requirements for the backend and database structure, affecting the scope and design of the project.
+      - Browser Updates: Assumption is made that major browser updates will not introduce breaking changes to the core web technologies used in the project. If browsers make changes that deprecate essential features, the system may need rework or fixes.
+
+### External Interface Requirements
+#### User Interfaces
 The UI will adhere to modern GUI standards, ensuring consistency with clear navigation, labeled menus, and standard action buttons (e.g., "Submit," "Cancel"). Error messages will follow a standardized format with error codes and corrective actions. A responsive design will ensure compatibility across desktop, laptop, and tablet devices, adjusting to different screen sizes and input methods. UI specifications, including layout and components, will be documented separately for detailed design.
-Hardware Interfaces
+#### Hardware Interfaces
 The application will support devices with modern web browsers (desktop, laptop, tablet) using standard input methods such as keyboard, mouse, or touch. It will employ a responsive web design that adapts to different screen sizes, resolutions, and input methods. No specialized hardware is required, and communication will occur via standard web protocols (HTTPS) for secure data transfer between the client and server.
-Software Interfaces
+#### Software Interfaces
 This web application is locally hosted and does not rely on third-party libraries, external databases, or secure communication protocols since no internet connection or remote services are involved. As such, the application operates in a contained environment on a local machine. The key software components include the frontend, which is built using HTML, Tailwind CSS, and JavaScript, and the backend, where the server-side logic is implemented using JavaScript to handle user input and execute necessary operations. Firebase is used solely for storing user progress, and data is handled locally without any external API calls. Since there is no data sharing or communication with other software components, there are no specific protocols or data formats that need to be adhered to. The application does not rely on secure communication (such as HTTPS) as it operates entirely within the local environment. Additionally, since no external dependencies are involved, there are no complex data exchange protocols or services to define.
-Communications Interfaces
+#### Communications Interfaces
 The application will use HTTPS (TLS/SSL) for secure client-server communication, with data transmitted using HTTP methods (GET, POST, PUT, DELETE). JSON will be used for data exchange between the frontend and backend. All communication will follow industry-standard protocols for security and efficiency.
 
-System Features
-Interactive Learning Environment
-Description and Priority
+### System Features
+- **Interactive Learning Environment**
+    - Description and Priority
 The platform offers a simulated terminal that allows users to practice Linux commands in a real-time environment, enhancing hands-on experience and practical knowledge. Priority: High.
-Benefit: Enables interactive learning and builds practical Linux command proficiency.
-Penalty: Could overwhelm users if the difficulty progression is not well-calibrated.
-Cost: Development and maintenance of the adaptive system.
-Risk: Misinterpretation of performance data may result in ineffective progression adjustments.
+        - Benefit: Enables interactive learning and builds practical Linux command proficiency.
+        - Penalty: Could overwhelm users if the difficulty progression is not well-calibrated.
+        - Cost: Development and maintenance of the adaptive system.
+        - Risk: Misinterpretation of performance data may result in ineffective progression adjustments.
 
-Stimulus/Response Sequences
-User Action 1: User enters a Linux command in the simulated terminal.
-System Response 1: The system processes the command and displays the output, providing a realistic experience.
-User Action 2: User successfully completes a task or set of commands.
-System Response 2: The system tracks performance and adjusts the next set of challenges, gradually increasing in difficulty.
+- Stimulus/Response Sequences
+        - User Action 1: User enters a Linux command in the simulated terminal. System Response 1: The system processes the command and displays the output, providing a realistic experience.
+        - User Action 2: User successfully completes a task or set of commands. System Response 2: The system tracks performance and adjusts the next set of challenges, gradually increasing in difficulty.
 
-Functional Requirements
-REQ-1: The system must allow users to enter Linux commands into a simulated terminal and execute them in real-time.
-REQ-2: The system should adapt the difficulty of tasks based on the user's performance and progress, ensuring a personalized learning experience.
-REQ-3: The system must provide clear feedback and suggestions when a user inputs an incorrect command.
-Gamified Progression System
+- Functional Requirements
+    - REQ-1: The system must allow users to enter Linux commands into a simulated terminal and execute them in real-time.
+    - REQ-2: The system should adapt the difficulty of tasks based on the user's performance and progress, ensuring a personalized learning experience.
+    - REQ-3: The system must provide clear feedback and suggestions when a user inputs an incorrect command.
+    - 
+- **Gamified Progression System**
 Description and Priority
 The platform incorporates a structured, gamified progression system that rewards users with achievements and badges as they complete tasks. Priority: High.
 Benefit: Provides an engaging, motivational structure that drives continued learning.
@@ -234,18 +227,3 @@ The system should be flexible enough to accommodate potential feature expansions
 In conclusion, this Software Requirements Specification (SRS) document outlines the essential features, functionalities, and system components of the Linux Learning Game. The platform is designed to provide an engaging, interactive, and structured environment for users to develop and master Linux command-line skills. By combining comprehensive tutorials, hands-on challenges, and a simulated terminal, the system ensures that users can progress from basic to advanced levels at their own pace.
 The system is built with flexibility and scalability in mind, offering features such as user account management, progress tracking, and function-based levels, which enhance the learning experience. The seamless integration of key components such as the backend server, simulated terminal, and real-time feedback mechanism ensures a comprehensive educational tool that caters to users at all proficiency levels.
 By using a modular architecture and adhering to best practices in design and development, the platform aims to provide a smooth and effective learning experience. The SRS document serves as a foundation for the development process, ensuring that all requirements are clearly defined and well understood. This will guide the creation of a reliable, user-friendly, and impactful learning tool that supports Linux command mastery in an intuitive and enjoyable manner.
-
-References
-Firebase Documentation (n.d.) https://firebase.google.com/docs
-HTTP Methods for Communication (n.d.) https://www.javatpoint.com/http-methods
-Node.js Documentation (n.d.) https://nodejs.org/en/docs/
-Component Diagram (n.d.) https://www.geeksforgeeks.org/component-based-diagram/
-UML Diagram - PlantUML (n.d.) https://plantuml.com/
-UML Diagram - Canva (n.d.) https://www.canva.com/en_in/
-VandenBrink, R. (2021). Linux for Networking Professionals: Securely configure and operate Linux network services for the enterprise. IEEE. Retrieved from https://ieeexplore.ieee.org/document/10163502
-Ovadia, S. (2016). Learn Linux in a Month of Lunches. IEEE. Retrieved from https://ieeexplore.ieee.org/document/10280154
-Miller, S. A. (2022). Linux Administration Best Practices: Practical solutions to approaching the design and management of Linux systems. IEEE. Retrieved from https://ieeexplore.ieee.org/document/10162383
-Calcatinge, A., & Balog, J. (2021). Mastering Linux Administration: A comprehensive guide to installing, configuring, and maintaining Linux systems in the modern data center. IEEE. Retrieved from https://ieeexplore.ieee.org/document/10163616
-Persson, J.-B. (2021). Linux System Programming Techniques: Become a proficient Linux system programmer using expert recipes and techniques. IEEE. Retrieved from https://ieeexplore.ieee.org/document/10163418
-
-
