@@ -8,8 +8,9 @@
 <strong>Maysa Sameer</strong>
 </p>
 
-##### Under the guidance of Mr. Sandy Joseph
-
+<p align="center" >
+<strong>Under the guidance of Mr. Sandy Joseph</strong>
+</p>
 
 
 Introduction
