@@ -1,12 +1,12 @@
 ### Software Requirement Specification 
 <p style="text-align:center;">Text_content</p>
-##### On
-##### Terminal Velocity
-##### By
-##### Eesha Ajith
-##### Elena Thomas Kochupurakal
-##### Giribala Arun
-##### Maysa Sameer
+On
+Terminal Velocity
+By
+Eesha Ajith
+Elena Thomas Kochupurakal
+Giribala Arun
+Maysa Sameer
 
 
 
