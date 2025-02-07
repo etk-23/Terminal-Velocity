@@ -89,105 +89,94 @@ The platform offers a simulated terminal that allows users to practice Linux com
         - Cost: Development and maintenance of the adaptive system.
         - Risk: Misinterpretation of performance data may result in ineffective progression adjustments.
 
-- Stimulus/Response Sequences
+    - Stimulus/Response Sequences
         - User Action 1: User enters a Linux command in the simulated terminal. System Response 1: The system processes the command and displays the output, providing a realistic experience.
         - User Action 2: User successfully completes a task or set of commands. System Response 2: The system tracks performance and adjusts the next set of challenges, gradually increasing in difficulty.
 
-- Functional Requirements
-    - REQ-1: The system must allow users to enter Linux commands into a simulated terminal and execute them in real-time.
-    - REQ-2: The system should adapt the difficulty of tasks based on the user's performance and progress, ensuring a personalized learning experience.
-    - REQ-3: The system must provide clear feedback and suggestions when a user inputs an incorrect command.
-    - 
+    - Functional Requirements
+        - REQ-1: The system must allow users to enter Linux commands into a simulated terminal and execute them in real-time.
+        - REQ-2: The system should adapt the difficulty of tasks based on the user's performance and progress, ensuring a personalized learning experience.
+        - REQ-3: The system must provide clear feedback and suggestions when a user inputs an incorrect command.
+      
 - **Gamified Progression System**
-Description and Priority
+    - Description and Priority
 The platform incorporates a structured, gamified progression system that rewards users with achievements and badges as they complete tasks. Priority: High.
-Benefit: Provides an engaging, motivational structure that drives continued learning.
-Penalty: Risk of the user focusing too much on rewards rather than skill development.
-Cost: Designing and implementing a complex leveling system.
-Risk: The pacing of levels must be well-balanced to avoid frustration or disengagement.
+        - Benefit: Provides an engaging, motivational structure that drives continued learning.
+        - Penalty: Risk of the user focusing too much on rewards rather than skill development.
+        - Cost: Designing and implementing a complex leveling system.
+        - Risk: The pacing of levels must be well-balanced to avoid frustration or disengagement.
 
-Stimulus/Response Sequences
-User Action 1: The user completes a set of tasks related to a specific functionality (e.g., File Management).
-System Response 1: The system rewards the user with badges or achievements based on their performance.
-User Action 2: The user progresses through levels, completing challenges.
-System Response 2: The system unlocks new levels, each with more advanced tasks focusing on different Linux commands.
+    - Stimulus/Response Sequences
+        - User Action 1: The user completes a set of tasks related to a specific functionality (e.g., File Management). System Response 1: The system rewards the user with badges or achievements based on their performance.
+        - User Action 2: The user progresses through levels, completing challenges. System Response 2: The system unlocks new levels, each with more advanced tasks focusing on different Linux commands.
 
 
-Functional Requirements
-REQ-1: The system must track user progress through levels and unlock new challenges as users complete tasks.
-REQ-2: The system should reward users with badges and achievements when mastering specific commands.
-REQ-3: The system should progressively increase task difficulty and introduce new command topics in a structured way.
+    - Functional Requirements
+        - REQ-1: The system must track user progress through levels and unlock new challenges as users complete tasks.
+        - REQ-2: The system should reward users with badges and achievements when mastering specific commands.
+        - REQ-3: The system should progressively increase task difficulty and introduce new command topics in a structured way.
 
 
-Terminal Simulator
-4.3.1 Description and Priority
+- **Terminal Simulator**
+    - Description and Priority
 This feature simulates a Linux terminal where users can practice commands  directly within a web-based interface. It allows for real-time feedback and command validation, enhancing the learning process. Users can track their progress and practice a variety of commands. Priority: High.
 
-4.3.2 Stimulus/Response Sequences
-User Action 1: The user selects a command challenge or tutorial in the application.
-System Response 1: The system displays a simulated terminal interface.
-User Action 2: The user types a Linux command into the terminal.
-System Response 2: The system validates the entered command, and if correct, executes the command within the simulated environment, providing feedback.
-User Action 3: The user receives real-time feedback, such as a success message or an error prompt.
-System Response 3: If the command is correct, the system updates the user’s progress and unlocks the next challenge. If the command is incorrect, the system provides hints or suggestions for correction.
-4.3.3 Functional Requirements
-REQ-1: The application must provide an interactive, simulated Linux terminal interface for the user to practice commands.
-REQ-2: The application must validate the entered Linux commands and provide real-time feedback.
-REQ-3: The application must offer hints or feedback for incorrect command usage.
-REQ-4: The terminal simulator must execute the commands in a controlled, safe environment to prevent damage to the local system.
-REQ-5: The application should allow users to reset the simulated environment for practice purposes without affecting their progress.
+    - Stimulus/Response Sequences
+        - User Action 1: The user selects a command challenge or tutorial in the application. System Response 1: The system displays a simulated terminal interface.
+        - User Action 2: The user types a Linux command into the terminal. System Response 2: The system validates the entered command, and if correct, executes the command within the simulated environment, providing feedback.
+        - User Action 3: The user receives real-time feedback, such as a success message or an error prompt. System Response 3: If the command is correct, the system updates the user’s progress and unlocks the next challenge. If the command is incorrect, the system provides hints or suggestions for correction.
+    - Functional Requirements
+        - REQ-1: The application must provide an interactive, simulated Linux terminal interface for the user to practice commands.
+        - REQ-2: The application must validate the entered Linux commands and provide real-time feedback.
+        - REQ-3: The application must offer hints or feedback for incorrect command usage.
+        - REQ-4: The terminal simulator must execute the commands in a controlled, safe environment to prevent damage to the local system.
+        - REQ-5: The application should allow users to reset the simulated environment for practice purposes without affecting their progress.
 
 
-Performance Tracking and Feedback
-Description and Priority
+- **Performance Tracking and Feedback**
+    - Description and Priority
 The system continuously tracks user performance, offering insights into executed commands, common mistakes, and overall progress. A dashboard displays detailed reports, helping users identify areas for improvement and monitor their learning journey effectively. Priority: High.
-Benefit: Ensures users can track their learning and identify areas needing improvement.
-Penalty: Users may become discouraged by frequent error reports.
-Cost: Developing a comprehensive tracking and feedback system.
-Risk: Feedback may become overwhelming if not well-structured.
+        - Benefit: Ensures users can track their learning and identify areas needing improvement.
+        - Penalty: Users may become discouraged by frequent error reports.
+        - Cost: Developing a comprehensive tracking and feedback system.
+        - Risk: Feedback may become overwhelming if not well-structured.
 
-4.4.2 Stimulus/Response Sequences
-User Action 1: The user completes a series of commands or tasks.
-System Response 1: The system updates the progress dashboard, reflecting       the user’s performance.
-User Action 2: The user views the performance dashboard.
-System Response 2: The system presents a detailed report on the user's executed commands, errors made, and suggestions for improvement.
-User Action 3: The user repeatedly makes a specific error in executing commands.
-System Response 3: The system flags this as a common mistake and provides targeted suggestions to address it.
+    - Stimulus/Response Sequences
+        - User Action 1: The user completes a series of commands or tasks. System Response 1: The system updates the progress dashboard, reflecting the user’s performance.
+        - User Action 2: The user views the performance dashboard. System Response 2: The system presents a detailed report on the user's executed commands, errors made, and suggestions for improvement.
+        - User Action 3: The user repeatedly makes a specific error in executing commands. System Response 3: The system flags this as a common mistake and provides targeted suggestions to address it.
 
-4.4.3 Functional Requirements
-REQ-1: The system must record and display user performance metrics, including executed commands, errors, and mistakes.
-REQ-2: The system should provide actionable feedback on mistakes and offer suggestions for improvement.
-REQ-3: The system must include a progress dashboard to allow users to track their learning journey.
+    - Functional Requirements
+        - REQ-1: The system must record and display user performance metrics, including executed commands, errors, and mistakes.
+        - REQ-2: The system should provide actionable feedback on mistakes and offer suggestions for improvement.
+        - REQ-3: The system must include a progress dashboard to allow users to track their learning journey.
 
-4.5    Error Handling
-4.5.1 Description and Priority
+- **Error Handling**
+    - Description and Priority
 The system provides clear, specific error messages when users input incorrect commands, accompanied by suggestions or hints to guide correction. This ensures users can learn from mistakes without becoming frustrated. Priority: High.
-Benefit: Helps users improve by addressing errors in real-time.
-Penalty: Misleading error messages could hinder learning.
-Cost: Development of an intelligent error-handling system.
-Risk: Inconsistent or unclear error feedback may confuse users.
-4.5.2 Stimulus/Response Sequences
-User Action 1: The user enters an invalid Linux command.
-System Response 1: The system displays an error message, explaining the mistake and suggesting a solution.
-User Action 2: The user views the error message and follows the suggestion.
-System Response 2: The system allows the user to retry the command, providing immediate feedback on the new input.
+        - Benefit: Helps users improve by addressing errors in real-time.
+        - Penalty: Misleading error messages could hinder learning.
+        - Cost: Development of an intelligent error-handling system.
+        - Risk: Inconsistent or unclear error feedback may confuse users.
+          
+    - Stimulus/Response Sequences
+        - User Action 1: The user enters an invalid Linux command. System Response 1: The system displays an error message, explaining the mistake and suggesting a solution.
+        - User Action 2: The user views the error message and follows the suggestion. System Response 2: The system allows the user to retry the command, providing immediate feedback on the new input.
 
-4.5.3 Functional Requirements
-REQ-1: The system must display a clear error message when a user enters an invalid command.
-REQ-2: The system should provide helpful hints or suggestions to correct the error.
-REQ-3: The system must allow users to retry commands after receiving feedback.
-Other Nonfunctional Requirements
-Performance Requirements
-5.1.1 User Authentication Speed
+    - Functional Requirements
+        - REQ-1: The system must display a clear error message when a user enters an invalid command.
+        - REQ-2: The system should provide helpful hints or suggestions to correct the error.
+        - REQ-3: The system must allow users to retry commands after receiving feedback.
+
+### Other Nonfunctional Requirements
+- Performance Requirements
+    - 5.1.1 User Authentication Speed
 The authentication process should be completed within 2 seconds. This ensures a smooth and seamless experience for users without frustrating delays. Any delays in authentication may lead to a poor user experience and increased dropout rates.
-
-5.1.2 Page Load Time
+    - 5.1.2 Page Load Time
 The application should load within 3 seconds on standard internet connections. This is critical to provide a responsive experience, keeping users engaged from the moment they access the game. A slow loading time may result in high bounce rates and dissatisfied users.
-
-5.1.3 Database Query Performance
+    - 5.1.3 Database Query Performance
 Database queries must be executed within 1 second. This ensures that users can quickly view their progress and rankings without waiting. Slow queries may result in a laggy user experience and hinder the game’s overall responsiveness.
-
-5.1.4 Frontend Rendering Efficiency
+    - 5.1.4 Frontend Rendering Efficiency
 The user interface should render efficiently even on low-end devices. This requires ensuring the game is optimized for performance, with minimal resources required for visual elements. Poor rendering performance on older devices could alienate users with less powerful hardware.
 
 Safety Requirements
