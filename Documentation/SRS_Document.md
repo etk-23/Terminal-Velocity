@@ -1,15 +1,11 @@
 ### Software Requirement Specification 
 On **Terminal Velocity** By
-Eesha Ajith
-Elena Thomas Kochupurakal
-Giribala Arun
+Eesha Ajith, 
+Elena Thomas Kochupurakal, 
+Giribala Arun, 
 Maysa Sameer
 
-
-
-##### Under the guidance of
-##### Mr. Sandy Joseph
-
+##### Under the guidance of Mr. Sandy Joseph
 
 Department of Computer Science and Engineering
 Rajagiri School of Engineering & Technology (Autonomous)
