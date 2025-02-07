@@ -1,20 +1,17 @@
-#### Software Requirement Specification 
+### Software Requirement Specification 
 
-On
-Terminal Velocity
-
-
-By
-
-Eesha Ajith (U2203086)
-Elena Thomas Kochupurakal (U2203087)
-Giribala Arun (U2203099) 
-Maysa Sameer (U2203139)
+##### On
+##### Terminal Velocity
+##### By
+##### Eesha Ajith
+##### Elena Thomas Kochupurakal
+##### Giribala Arun
+##### Maysa Sameer
 
 
 
-Under the guidance of
-Mr. Sandy Joseph
+##### Under the guidance of
+##### Mr. Sandy Joseph
 
 
 Department of Computer Science and Engineering
