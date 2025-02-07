@@ -179,40 +179,33 @@ Database queries must be executed within 1 second. This ensures that users can q
     - 5.1.4 Frontend Rendering Efficiency
 The user interface should render efficiently even on low-end devices. This requires ensuring the game is optimized for performance, with minimal resources required for visual elements. Poor rendering performance on older devices could alienate users with less powerful hardware.
 
-Safety Requirements
-5.2.1 Authentication and Access Control
+- Safety Requirements
+    - 5.2.1 Authentication and Access Control
 The system must ensure secure user authentication through Firebase and prevent unauthorized access to user accounts. Insecure login attempts (e.g., brute-force attacks) should be detected, and users should be locked out after a certain number of failed attempts. 
-
-5.2.2 Error Handling and Feedback
+    - 5.2.2 Error Handling and Feedback
 The application must provide clear error messages that do not expose sensitive internal information. If an error occurs, the system should safely handle it without crashing or exposing the application to security risks. The error feedback system must guide users without revealing implementation details that could be exploited.
-
-5.2.3 Input Validation and Command Restrictions
+    - 5.2.3 Input Validation and Command Restrictions
 User inputs must be validated to prevent malicious commands or code injection that could harm the system or users. The simulated terminal must restrict potentially harmful Linux commands, such as system shutdown or file deletion commands, to ensure no damage occurs. All inputs should be sanitized to prevent security vulnerabilities.
 
-Security Requirements
-5.3.1 User Authentication and Authorization
+- Security Requirements
+    - 5.3.1 User Authentication and Authorization
 All users must authenticate via Firebase Authentication, which requires a secure username and password combination. User identity verification should be completed before accessing any protected areas of the application or submitting any data. 
-
-5.3.2 Privacy Policy and User Consent
+    - 5.3.2 Privacy Policy and User Consent
 A clear and concise privacy policy must be provided to users at the point of account creation, outlining what data is collected, how it will be used, and how users can manage or delete their data. The system must acquire explicit user consent before collecting any personal data.
-
-5.3.3 Data Privacy Considerations
+    - 5.3.3 Data Privacy Considerations
 The application implements minimal authentication using local session management, without requiring external authentication services. All data is stored locally, eliminating risks of unauthorized access or data interception. Since no personal information is stored or shared beyond local usage, there are no external compliance requirements. Due to the absence of external dependencies or third-party access points, no additional security or privacy certifications are required.
 
-Software Quality Attributes
-5.4.1 Usability
+- Software Quality Attributes
+    - 5.4.1 Usability
 The system must provide an intuitive and easy-to-navigate user interface. Users should be able to start the game and access key features within 3 clicks, ensuring an easy learning curve. The goal is to prioritize ease of use over ease of learning, minimizing the time required for users.
-
-5.4.2 Reliability
+    - 5.4.2 Reliability
 The game must have an uptime of at least 99.59%, ensuring users can reliably access the platform for learning and practice. This will minimize downtime and ensure that users can trust the system for consistent learning experiences. Any failures or interruptions in service should be addressed within 24 hours.
-
-5.4.3 Maintainability
+    - 5.4.3 Maintainability
 The codebase should be modular and well-documented, allowing developers to easily update or modify features as needed. The system should be designed for easy bug tracking and fixing, with the goal of reducing maintenance time by 30% after the initial release. This will allow for efficient updates without significant effort.
-
-5.4.4 Flexibility
+    - 5.4.4 Flexibility
 The system should be flexible enough to accommodate potential feature expansions, such as adding new challenges, tutorials, or additional user tracking systems. New features should be able to be integrated with minimal disruption to the existing functionality. This flexibility will help adapt to future needs without requiring a complete redesign.
 
-6. Conclusion
-In conclusion, this Software Requirements Specification (SRS) document outlines the essential features, functionalities, and system components of the Linux Learning Game. The platform is designed to provide an engaging, interactive, and structured environment for users to develop and master Linux command-line skills. By combining comprehensive tutorials, hands-on challenges, and a simulated terminal, the system ensures that users can progress from basic to advanced levels at their own pace.
-The system is built with flexibility and scalability in mind, offering features such as user account management, progress tracking, and function-based levels, which enhance the learning experience. The seamless integration of key components such as the backend server, simulated terminal, and real-time feedback mechanism ensures a comprehensive educational tool that caters to users at all proficiency levels.
+### Conclusion
+In conclusion, this Software Requirements Specification (SRS) document outlines the essential features, functionalities, and system components of the Linux Learning Game. The platform is designed to provide an engaging, interactive, and structured environment for users to develop and master Linux command-line skills. By combining comprehensive tutorials, hands-on challenges, and a simulated terminal, the system ensures that users can progress from basic to advanced levels at their own pace. <br>
+The system is built with flexibility and scalability in mind, offering features such as user account management, progress tracking, and function-based levels, which enhance the learning experience. The seamless integration of key components such as the backend server, simulated terminal, and real-time feedback mechanism ensures a comprehensive educational tool that caters to users at all proficiency levels.<br>
 By using a modular architecture and adhering to best practices in design and development, the platform aims to provide a smooth and effective learning experience. The SRS document serves as a foundation for the development process, ensuring that all requirements are clearly defined and well understood. This will guide the creation of a reliable, user-friendly, and impactful learning tool that supports Linux command mastery in an intuitive and enjoyable manner.
