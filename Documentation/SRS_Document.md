@@ -12,32 +12,30 @@
 <strong>Under the guidance of Mr. Sandy Joseph</strong>
 </p>
 
+<br>
 
-Introduction
-Purpose 
+### 1. Introduction
+#### 1.1 Purpose 
 This document outlines the software requirements for a web-based Linux learning platform, designed to teach essential Linux commands through interactive tutorials and challenges. The platform aims to provide an engaging, gamified learning experience that enhances users' Linux command skills in an enjoyable and immersive way.
-Product Scope
-Terminal Velocity is designed to provide an interactive and gamified approach to learning Linux command skills. Its primary goal is to guide users through a series of tutorials and challenges that progressively build their proficiency with essential Linux commands. By combining educational content with a game-like structure, the platform aims to make learning both fun and effective.
-A key objective of the game is to help users overcome the common intimidation that often accompanies their first experience with a Linux system. Many new users find the command line overwhelming, and this platform addresses that challenge by providing a learning environment that breaks down complex concepts into bite-sized tasks.
-To keep learners motivated, the system incorporates a badge-based reward system. As users complete challenges and master new commands, they earn badges that recognize their achievements. This gamified approach not only rewards progress but also encourages users to keep advancing through increasingly challenging tasks, making the learning process both engaging and rewarding.
-Overall Description
-Product Perspective
+#### 1.2 Product Scope
+  - Terminal Velocity is designed to provide an interactive and gamified approach to learning Linux command skills. Its primary goal is to guide users through a series of tutorials and challenges that progressively build their proficiency with essential Linux commands. By combining educational content with a game-like structure, the platform aims to make learning both fun and effective.
+  - A key objective of the game is to help users overcome the common intimidation that often accompanies their first experience with a Linux system. Many new users find the command line overwhelming, and this platform addresses that challenge by providing a learning environment that breaks down complex concepts into bite-sized tasks.
+  - To keep learners motivated, the system incorporates a badge-based reward system. As users complete challenges and master new commands, they earn badges that recognize their achievements. This gamified approach not only rewards progress but also encourages users to keep advancing through increasingly challenging tasks, making the learning process both engaging and rewarding.
+### 2. Overall Description
+#### 2.1 Product Perspective
 The Linux learning game is a standalone web application created to help users develop and master Linux command skills in an interactive and engaging way. It features a comprehensive set of tutorials and challenges that guide users from beginner-level basics to more advanced concepts and techniques, with more focus on task-based lessons. Each tutorial is designed to provide clear explanations, and opportunities for hands-on trials. The application also incorporates a controlled, web-based environment where users can execute real Linux commands, enabling them to practice and refine their skills in a safe, simulated terminal. By combining learning materials with practical exercises, the platform ensures an effective and immersive educational experience for users at all proficiency levels. As shown in Figure 1.1, the system architecture consists of several key components that work together to provide an interactive and immersive learning experience for users:
-Frontend: The user interface is the front-facing component that allows users to interact with the application. 
-Backend: The backend manages the logic for user authentication, tutorial content delivery, challenge progression, and command execution.
+  - Frontend: The user interface is the front-facing component that allows users to interact with the application.
+  - Backend: The backend manages the logic for user authentication, tutorial content delivery, challenge progression, and command execution.
+    
+#### 2.2 Product Functions
+  - Tutorial Delivery: Provide structured lessons covering Linux command-line skills, progressing from basic to advanced levels.
+  - Interactive Challenges: Present users with tasks and problem-solving exercises to test and reinforce their understanding of Linux commands.
+  - Simulating a Linux Command-Line Interface: Users can input Linux commands directly into a simulated terminal window and receive outputs just like they would in a real Linux terminal.
+  - Command Execution: Enable users to practice real Linux commands in a simulated, web-based terminal environment.
+  - Progress Tracking: Monitor and display user progress through tutorials and challenges, allowing for a clear learning path.
+  - Feedback Mechanism: Offer immediate feedback on user actions, including error explanations and suggestions for improvement.
+  - User Management: Allow users to create and manage accounts to personalize their learning experience and save progress.
 
-Figure 2.1: System Architecture Diagram
-Product Functions
-2.2.1 Tutorial Delivery: Provide structured lessons covering Linux command-line skills, progressing from basic to advanced levels.
-2.2.2 Interactive Challenges: Present users with tasks and problem-solving exercises to test and reinforce their understanding of Linux commands.
-2.2.3 Simulating a Linux Command-Line Interface: Users can input Linux commands directly into a simulated terminal window and receive outputs just like they would in a real Linux terminal.
-2.2.4 Command Execution: Enable users to practice real Linux commands in a simulated, web-based terminal environment.
-2.2.5 Progress Tracking: Monitor and display user progress through tutorials and challenges, allowing for a clear learning path.
-2.2.6 Feedback Mechanism: Offer immediate feedback on user actions, including error explanations and suggestions for improvement.
-2.2.7 User Management: Allow users to create and manage accounts to personalize their learning experience and save progress.
-As shown in Figure 2.2, the UML diagram illustrates the key components of the system and their interactions.
-
-Figure 2.2: UML Diagram
 
 Operating Environment
 The Linux learning game will operate within the following environment:
