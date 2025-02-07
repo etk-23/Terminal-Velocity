@@ -1,56 +1,320 @@
 <html>
 <head>
-    <title>Terminal Velocity - Sign In</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Outfit', sans-serif;
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        function toggleSubMenu(id) {
+            const subMenu = document.getElementById(id);
+            subMenu.classList.toggle('hidden');
         }
-        h2 {
-            font-family: 'Press Start 2P', cursive;
+
+        function showContent(contentId) {
+            const contentSections = document.querySelectorAll('.content-section');
+            contentSections.forEach(section => section.classList.add('hidden'));
+            document.getElementById(contentId).classList.remove('hidden');
         }
-    </style>
+    </script>
 </head>
-<body class="bg-[#080c0f] text-white min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-md p-8 space-y-8 bg-[#080c0f] rounded-lg shadow-lg">
-        <div class="text-center">
-            <h2 class="text-3xl font-extrabold">Terminal Velocity</h2>
-            <p class="mt-2 text-sm text-gray-400">Sign in to your account</p>
-        </div>
-        <form class="mt-8 space-y-6">
-            <div class="rounded-md shadow-sm space-y-5">
+<body class="bg-gray-900">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-1/4 bg-gray-800 p-4 overflow-y-auto">
+            <div class="space-y-4">
                 <div>
-                    <label for="email-address" class="sr-only">Email address</label>
-                    <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                    <button onclick="toggleSubMenu('directory-management-submenu')" class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                        <i class="fas fa-folder-open mr-2"></i>
+                        Directory Management
+                    </button>
+                    <div id="directory-management-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-ls')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            ls
+                        </button>
+                        <button onclick="showContent('content-cd')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            cd
+                        </button>
+                        <button onclick="showContent('content-pwd')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            pwd
+                        </button>
+                        <button onclick="showContent('content-mkdir')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            mkdir
+                        </button>
+                        <button onclick="showContent('content-rmdir')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            rmdir
+                        </button>
+                    </div>
                 </div>
                 <div>
-                    <label for="password" class="sr-only">Password</label>
-                    <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                    <button onclick="toggleSubMenu('file-management-submenu')" class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                        <i class="fas fa-folder mr-2"></i>
+                        File Management
+                    </button>
+                    <div id="file-management-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-cp')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            cp
+                        </button>
+                        <button onclick="showContent('content-mv')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            mv
+                        </button>
+                        <button onclick="showContent('content-rm')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            rm
+                        </button>
+                        <button onclick="showContent('content-touch')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            touch
+                        </button>
+                        <button onclick="showContent('content-find')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            find
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleSubMenu('system-monitoring-submenu')" class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                        <i class="fas fa-desktop mr-2"></i>
+                        System Monitoring
+                    </button>
+                    <div id="system-monitoring-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-ps')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            ps
+                        </button>
+                        <button onclick="showContent('content-top')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            top
+                        </button>
+                        <button onclick="showContent('content-df')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            df
+                        </button>
+                        <button onclick="showContent('content-du')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            du
+                        </button>
+                        <button onclick="showContent('content-uptime')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            uptime
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleSubMenu('networking-submenu')" class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                        <i class="fas fa-network-wired mr-2"></i>
+                        Networking
+                    </button>
+                    <div id="networking-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-ping')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            ping
+                        </button>
+                        <button onclick="showContent('content-netstat')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            netstat
+                        </button>
+                        <button onclick="showContent('content-ss')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            ss
+                        </button>
+                        <button onclick="showContent('content-curl')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            curl
+                        </button>
+                        <button onclick="showContent('content-wget')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            wget
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleSubMenu('user-management-submenu')" class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                        <i class="fas fa-users mr-2"></i>
+                        User Management
+                    </button>
+                    <div id="user-management-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-useradd')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            useradd
+                        </button>
+                        <button onclick="showContent('content-usermod')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            usermod
+                        </button>
+                        <button onclick="showContent('content-passwd')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            passwd
+                        </button>
+                        <button onclick="showContent('content-groups')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            groups
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleSubMenu('permissions-submenu')" class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                        <i class="fas fa-lock mr-2"></i>
+                        Permissions
+                    </button>
+                    <div id="permissions-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-chmod')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            chmod
+                        </button>
+                        <button onclick="showContent('content-chown')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            chown
+                        </button>
+                        <button onclick="showContent('content-chgrp')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            chgrp
+                        </button>
+                        <button onclick="showContent('content-umask')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            umask
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleSubMenu('system-services-submenu')" class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                        <i class="fas fa-cogs mr-2"></i>
+                        System Services
+                    </button>
+                    <div id="system-services-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-systemctl')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            systemctl
+                        </button>
+                        <button onclick="showContent('content-service')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            service
+                        </button>
+                        <button onclick="showContent('content-journalctl')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            journalctl
+                        </button>
+                        <button onclick="showContent('content-init')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            init
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="toggleSubMenu('text-processing-submenu')" class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                        <i class="fas fa-file-alt mr-2"></i>
+                        Text Processing
+                    </button>
+                    <div id="text-processing-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-cat')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            cat
+                        </button>
+                        <button onclick="showContent('content-grep')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            grep
+                        </button>
+                        <button onclick="showContent('content-sed')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            sed
+                        </button>
+                        <button onclick="showContent('content-awk')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            awk
+                        </button>
+                        <button onclick="showContent('content-cut')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                            cut
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                    <label for="remember-me" class="ml-2 block text-sm text-gray-400">Remember me</label>
-                </div>
-                <div class="text-sm">
-                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
-                </div>
-            </div>
-            <div>
-                <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                        <i class="fas fa-sign-in-alt"></i>
-                    </span>
-                    Sign In
-                </button>
-            </div>
-        </form>
-        <div class="text-center">
-            <p class="text-sm text-gray-400">Don't have an account? <a href="file:///D:/Rajagiri/S6/Project/landing.html" class="font-medium text-indigo-600 hover:text-indigo-500">Register</a></p>
         </div>
-    </div>
-</body>
-</html>
+        <!-- Main Content -->
+        <div class="flex-1 bg-gray-900 p-4 flex">
+            <!-- Content Section -->
+            <div class="w-1/3 bg-gray-800 p-4 overflow-y-auto">
+                <div id="content-ls" class="content-section hidden">
+                    <h2 class="text-white text-xl">ls Command</h2>
+                    <p class="text-white">The ls command is used to list directory contents.</p>
+                </div>
+                <div id="content-cd" class="content-section hidden">
+                    <h2 class="text-white text-xl">cd Command</h2>
+                    <p class="text-white">The cd command is used to change the current directory.</p>
+                </div>
+                <div id="content-pwd" class="content-section hidden">
+                    <h2 class="text-white text-xl">pwd Command</h2>
+                    <p class="text-white">The pwd command prints the current working directory.</p>
+                </div>
+                <div id="content-mkdir" class="content-section hidden">
+                    <h2 class="text-white text-xl">mkdir Command</h2>
+                    <p class="text-white">The mkdir command is used to create directories.</p>
+                </div>
+                <div id="content-rmdir" class="content-section hidden">
+                    <h2 class="text-white text-xl">rmdir Command</h2>
+                    <p class="text-white">The rmdir command is used to remove empty directories.</p>
+                </div>
+                <div id="content-cp" class="content-section hidden">
+                    <h2 class="text-white text-xl">cp Command</h2>
+                    <p class="text-white">The cp command is used to copy files and directories.</p>
+                </div>
+                <div id="content-mv" class="content-section hidden">
+                    <h2 class="text-white text-xl">mv Command</h2>
+                    <p class="text-white">The mv command is used to move or rename files and directories.</p>
+                </div>
+                <div id="content-rm" class="content-section hidden">
+                    <h2 class="text-white text-xl">rm Command</h2>
+                    <p class="text-white">The rm command is used to remove files or directories.</p>
+                </div>
+                <div id="content-touch" class="content-section hidden">
+                    <h2 class="text-white text-xl">touch Command</h2>
+                    <p class="text-white">The touch command is used to create empty files or update the timestamp of existing files.</p>
+                </div>
+                <div id="content-find" class="content-section hidden">
+                    <h2 class="text-white text-xl">find Command</h2>
+                    <p class="text-white">The find command is used to search for files in a directory hierarchy.</p>
+                </div>
+                <div id="content-ps" class="content-section hidden">
+                    <h2 class="text-white text-xl">ps Command</h2>
+                    <p class="text-white">The ps command is used to display information about active processes.</p>
+                </div>
+                <div id="content-top" class="content-section hidden">
+                    <h2 class="text-white text-xl">top Command</h2>
+                    <p class="text-white">The top command is used to display real-time information about running processes.</p>
+                </div>
+                <div id="content-df" class="content-section hidden">
+                    <h2 class="text-white text-xl">df Command</h2>
+                    <p class="text-white">The df command is used to display disk space usage.</p>
+                </div>
+                <div id="content-du" class="content-section hidden">
+                    <h2 class="text-white text-xl">du Command</h2>
+                    <p class="text-white">The du command is used to estimate file space usage.</p>
+                </div>
+                <div id="content-uptime" class="content-section hidden">
+                    <h2 class="text-white text-xl">uptime Command</h2>
+                    <p class="text-white">The uptime command is used to tell how long the system has been running.</p>
+                </div>
+                <div id="content-ping" class="content-section hidden">
+                    <h2 class="text-white text-xl">ping Command</h2>
+                    <p class="text-white">The ping command is used to check the network connectivity between two nodes.</p>
+                </div>
+                <div id="content-netstat" class="content-section hidden">
+                    <h2 class="text-white text-xl">netstat Command</h2>
+                    <p class="text-white">The netstat command is used to display network connections, routing tables, and interface statistics.</p>
+                </div>
+                <div id="content-ss" class="content-section hidden">
+                    <h2 class="text-white text-xl">ss Command</h2>
+                    <p class="text-white">The ss command is used to dump socket statistics.</p>
+                </div>
+                <div id="content-curl" class="content-section hidden">
+                    <h2 class="text-white text-xl">curl Command</h2>
+                    <p class="text-white">The curl command is used to transfer data from or to a server using various protocols.</p>
+                </div>
+                <div id="content-wget" class="content-section hidden">
+                    <h2 class="text-white text-xl">wget Command</h2>
+                    <p class="text-white">The wget command is used to download files from the web.</p>
+                </div>
+                <div id="content-useradd" class="content-section hidden">
+                    <h2 class="text-white text-xl">useradd Command</h2>
+                    <p class="text-white">The useradd command is used to create a new user or update default new user information.</p>
+                </div>
+                <div id="content-usermod" class="content-section hidden">
+                    <h2 class="text-white text-xl">usermod Command</h2>
+                    <p class="text-white">The usermod command is used to modify a user account.</p>
+                </div>
+                <div id="content-passwd" class="content-section hidden">
+                    <h2 class="text-white text-xl">passwd Command</h2>
+                    <p class="text-white">The passwd command is used to change a user's password.</p>
+                </div>
+                <div id="content-groups" class="content-section hidden">
+                    <h2 class="text-white text-xl">groups Command</h2>
+                    <p class="text-white">The groups command is used to show which groups a user is a member of.</p>
+                </div>
+                <div id="content-chmod" class="content-section hidden">
+                    <h2 class="text-white text-xl">chmod Command</h2>
+                    <p class="text-white">The chmod command is used to change file access permissions.</p>
+                </div>
+                <div id="content-chown" class="content-section hidden">
+                    <h2 class="text-white text-xl">chown Command</h2>
+                    <p class="text-white">The chown command is used to change file owner and group.</p>
+                </div>
+                <div id="content-chgrp" class="content-section hidden">
+                    <h2 class="text-white text-xl">chgrp Command</h2>
+                    <p class="text-white">The chgrp command is used to change group ownership.</p>
+                </div>
+                <div id="content-umask" class="content-section hidden">
+                    <h2 class="text-white text-xl">umask Command</h2>
+                    <p class="text-white">The umask command is used to set file mode creation mask.</p>
+                </div>
+                <div id="content-systemctl" class="content-section hidden">
+                    <h2 class="text-white text-xl">systemctl Command</h2>
+                    <p class="text-white">The systemctl command is used to examine and control the systemd system and service manager.</p>
+                </div>
+                <div id="content-service" class="content
