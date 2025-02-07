@@ -1,17 +1,14 @@
-### Software Requirement Specification 
-On **Terminal Velocity** By
-Eesha Ajith, 
-Elena Thomas Kochupurakal, 
-Giribala Arun, 
+<p align="center">
+### Software Requirement Specification<br>
+On **Terminal Velocity**<br>
+By<br>
+Eesha Ajith,<br>
+Elena Thomas Kochupurakal,<br>
+Giribala Arun,<br>
 Maysa Sameer
+</p>
 
 ##### Under the guidance of Mr. Sandy Joseph
-
-Department of Computer Science and Engineering
-Rajagiri School of Engineering & Technology (Autonomous)
-(Parent University: APJ Abdul Kalam Technological University)
-Rajagiri Valley, Kakkanad, Kochi, 682039
-February 2025
 
 Software Requirements Specification
 for
