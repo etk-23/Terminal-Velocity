@@ -1,55 +1,14 @@
 <p align="center">
-### Software Requirement Specification<br>
-On **Terminal Velocity**<br>
-By<br>
-Eesha Ajith,<br>
-Elena Thomas Kochupurakal,<br>
-Giribala Arun,<br>
-Maysa Sameer
+**### Software Requirement Specification**<br>
+**On** **Terminal Velocity**<br>
+**By**<br>
+**Eesha Ajith,**<br>
+**Elena Thomas Kochupurakal,**<br>
+**Giribala Arun,**<br>
+**Maysa Sameer**
 </p>
 
 ##### Under the guidance of Mr. Sandy Joseph
-
-Software Requirements Specification
-for
-Terminal Velocity
-Version 1.0 approved
-Prepared by
-U2203086 Eesha Ajith
-U2203087 Elena Thomas Kochupurakal 
-U2203099 Giribala Arun
-U2203139 Maysa Sameer
-Guided By: Mr. Sandy Joseph, Asst. Professor, RSET
-
-Table of Contents
-Table of Contents	ii
-1.	Introduction	1
-1.1	Purpose	1
-1.2	Product Scope	1
-2.	Overall Description	2
-2.1	Product Perspective	2
-2.2	Product Functions	3
-2.3	Operating Environment	4
-2.4	Design and Implementation Constraints	5
-2.5	Assumptions and Dependencies	6
-3.	External Interface Requirements	8
-3.1	User Interfaces	8
-3.2	Hardware Interfaces	8
-3.3	Software Interfaces	8
-3.4	Communications Interfaces	9
-4.	System Features	10
-4.1	Interactive Learning Environment	10
-4.2	Gamified Progression System	11
-4.3 Terminal Simulator	12
-4.4 Performance Tracking and Feedback	13
-4.5 Error Handling	14
-5.	Other Nonfunctional Requirements	15
-5.1	Performance Requirements	15
-5.2	Safety Requirements	15
-5.3	Security Requirements	16
-5.4	Software Quality Attributes	17
-6. Conclusion	18
-7. References	19
 
 
 Introduction
