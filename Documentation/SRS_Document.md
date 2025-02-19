@@ -1,15 +1,6 @@
 <p align="center" >
 <strong>Software Requirement Specification</strong><br>
 <strong>On Terminal Velocity</strong><br>
-<strong>By</strong><br>
-<strong>Eesha Ajith</strong><br>
-<strong>Elena Thomas Kochupurakal</strong><br>
-<strong>Giribala Arun</strong><br>
-<strong>Maysa Sameer</strong>
-</p>
-<br>
-<p align="center" >
-<strong>Under the guidance of Mr. Sandy Joseph</strong>
 </p>
 
 <br>
