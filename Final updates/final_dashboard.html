@@ -2,9 +2,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorials</title>
+    <title>Command Reference</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+    </style>
     <script>
         function toggleSubMenu(id) {
             const subMenu = document.getElementById(id);
@@ -209,24 +215,74 @@
             </div>
             <!-- Main Content -->
             <div class="flex-1 bg-gray-900 p-4 flex">
-                <!-- Content Section -->
+                
                 <div id="content-sidebar" class="w-1/3 bg-gray-800 p-4 overflow-y-auto hidden">
-                    <div id="content-ls" class="content-section hidden">
-                        <h2 class="text-white text-xl">ls Command</h2>
-                        <p class="text-white">The ls command is used to list directory contents.</p>
-                    </div>
-                    <div id="content-cd" class="content-section hidden">
-                        <h2 class="text-white text-xl">cd Command</h2>
-                        <p class="text-white">The cd command is used to change the current directory.</p>
-                    </div>
-                    <div id="content-pwd" class="content-section hidden">
+                
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div id="content-ls" class="content-section hidden">
+                    <h2 class="text-white text-xl">ls Command</h2>
+                    <p class="text-white">The ls command is used to list directory contents.</p>
+                </div>
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                    
+                    
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+				<div id="content-cd" class="content-section hidden">
+				    <h2 class="text-green-500 font-bold text-xl">cd Command</h2>
+				    <p class="text-white"> 
+				    </br>
+					The cd command allows you to change directories in Linux, making it easier to navigate through the file system 
+					and manage your files efficiently. 
+					</br> </br>
+					</p>
+					
+					<p class="text-white font-bold">
+					Whether you're just starting or already a command-line ninja, learning how 
+					to use the cd command is key to smooth sailing!
+					</br> </br>
+				    </p>
+				    
+				    <p class="text-green-500 font-bold">MOVE TO THE SUB-DIRECTORY</p>
+				    <p class="text-white italic">Syntax: cd {subdirectory_name}</p>
+					<p class="text-white">
+					This will put the user in a subdirectory. For example, if you are in the directory /name, execution of 'cd my_name'
+					will take you to /name/my_name.
+					<br><br>
+				    </p>
+				    
+				    <p class="text-green-500 font-bold">MOVE TO THE PARENT-DIRECTORY</p>
+				    <p class="text-white italic">Syntax: cd ..</p>
+				    <p class="text-white">
+    				This will move the user up one directory. For example, if you are in the directory /name/my_name, execution of
+    				'cd ..' will take you to /name.
+    				<br><br>
+					</p>
+
+				    
+				    <p class="text-white">
+    				Link to refer: <a href="https://www.geeksforgeeks.org/basic-linux-commands/#4-cd-command-in-linux" 
+    				class="text-blue-400 hover:underline" target="_blank">cd command</a> </br> </br>
+					</p>
+				    
+				    <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+				</div>
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+				
+				
+				<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div id="content-pwd" class="content-section hidden">
                         <h2 class="text-white text-xl">pwd Command</h2>
                         <p class="text-white">The pwd command prints the current working directory.</p>
-                    </div>
-                    <div id="content-mkdir" class="content-section hidden">
+                </div>
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                <div id="content-mkdir" class="content-section hidden">
                         <h2 class="text-white text-xl">mkdir Command</h2>
                         <p class="text-white">The mkdir command is used to create directories.</p>
-                    </div>
+                </div>
+                <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+                
                     <div id="content-rmdir" class="content-section hidden">
                         <h2 class="text-white text-xl">rmdir Command</h2>
                         <p class="text-white">The rmdir command is used to remove empty directories.</p>
@@ -313,8 +369,4 @@
                     </div>
                     <div id="content-chown" class="content-section hidden">
                         <h2 class="text-white text-xl">chown Command</h2>
-                        <p class="text-white">The chown command is used to change file owner and group.</p>
-                    </div>
-                    <div id="content-chgrp" class="content-section hidden">
-                        <h2 class="text-white text-xl">chgrp Command</h2>
-                        <p class="text-white">The chgrp command is
+                        <p class="text-white">The chown command is used to change file owner
