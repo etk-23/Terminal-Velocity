@@ -306,6 +306,8 @@
                 <h2 class="text-green-500 text-xl">QUESTIONS</h2>
             </div>
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-ls" class="content-section hidden">
                 <h2 class="text-green-500 font-bold text-xl">ls Command</h2>
@@ -454,6 +456,8 @@
                 <h2 class="text-green-500 text-xl">QUESTIONS</h2>
             </div>
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-cp" class="content-section hidden">
                 <h2 class="text-green-500 font-bold text-xl">cp Command</h2>
@@ -496,7 +500,7 @@
                     the source file and directory, as well as write permissions on the destination directory. <br><br>
                 </p>
                 <p class="text-white font-bold italic">
-                    Moved and renamed files—organization is key!<br><br>
+                  I tried using the mv command, but it just moved me to tears!<br><br>
                 </p>
                 <p class="text-green-500 font-bold">NORMAL OPERATION</p>
                 <p class="text-white italic">Syntax: mv [options] [source] [destination]</p>
@@ -522,81 +526,258 @@
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-rm" class="content-section hidden">
-                <h2 class="text-white text-xl">rm Command</h2>
-                <p class="text-white">The rm command is used to remove files or directories.</p>
-            </div>
+              <h2 class="text-green-500 font-bold text-xl">rm Command</h2>
+              <p class="text-white">
+                <br> The rm command is used to remove (delete) files or directories. Be cautious when using this command, as it 
+                permanently deletes the specified files or directories without moving them to the trash or recycle bin. 
+                You must have the necessary permissions to delete files or directories. <br><br>
+              </p>
+              <p class="text-white font-bold italic">
+                I tried using the rm command, but it just removed all my hopes and dreams!<br><br>
+              </p>
+              <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+              <p class="text-white italic">Syntax: rm [options] [file_name]</p>
+              <p class="text-white">
+                Here, replace [file_name] with the file or directory you want to remove.<br><br>
+              </p>
+              <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+              <p class="text-white">
+                1. -r or --recursive: Used to delete directories and their contents recursively. <br>
+                2. -f or --force: Forces deletion of files without prompting for confirmation, even if the file is 
+                write-protected. <br>
+                3. -i or --interactive: Prompts you for confirmation before deleting each file. <br>
+                4. -v or --verbose: Provides detailed information about what is being deleted. <br><br>
+              </p>
+              <p class="text-green-500 font-bold">HANDY LINK</p>
+              <p class="text-white">
+                Link to refer: <a href="https://www.geeksforgeeks.org/rm-command-linux-examples/" 
+                  class="text-blue-400 hover:underline" target="_blank">rm command</a></br> </br>
+              </p>
+              <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+            </div>            
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-touch" class="content-section hidden">
-                <h2 class="text-white text-xl">touch Command</h2>
-                <p class="text-white">The touch command is used to create empty files or update the timestamp of existing files.</p>
+              <h2 class="text-green-500 font-bold text-xl">touch Command</h2>
+              <p class="text-white">
+                <br> The touch command is used to create an empty file or to update the access and modification times of an 
+                existing file. If the file doesn't exist, it will be created with zero size. If the file exists, its timestamp 
+                will be updated without modifying the content. <br><br>
+              </p>
+              <p class="text-white font-bold italic">
+                I tried using the touch command on my computer, but it didn’t feel very touching.<br><br>
+              </p>
+              <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+              <p class="text-white italic">Syntax: touch [options] [file_name]</p>
+              <p class="text-white">
+                Here, replace [file_name] with the name of the file you want to create or update.<br><br>
+              </p>
+              <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+              <p class="text-white">
+                1. -c or --no-create: Does not create a new file if the file doesn't exist. <br>
+                2. -a: Changes only the access time of the file. <br>
+                3. -m: Changes only the modification time of the file. <br>
+                4. -t: Allows specifying a custom timestamp for the file in the format `[[CC]YY]MMDDhhmm[.ss]`. <br><br>
+              </p>
+              <p class="text-green-500 font-bold">HANDY LINK</p>
+              <p class="text-white">
+                Link to refer: <a href="https://www.geeksforgeeks.org/touch-command-in-linux-with-examples/" 
+                  class="text-blue-400 hover:underline" target="_blank">touch command</a></br> </br>
+              </p>
+              <h2 class="text-green-500 text-xl">QUESTIONS</h2>
             </div>
+            
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-find" class="content-section hidden">
-                <h2 class="text-white text-xl">find Command</h2>
-                <p class="text-white">The find command is used to search for files in a directory hierarchy.</p>
+              <h2 class="text-green-500 font-bold text-xl">find Command</h2>
+              <p class="text-white">
+                <br> The find command is used to search for files and directories in a directory hierarchy. It is a powerful tool 
+                that allows you to search by various criteria such as file name, type, size, modification date, and more. <br><br>
+              </p>
+              <p class="text-white font-bold italic">
+                I used the find command, but it turns out I was just findin' more problems!<br><br>
+              </p>
+              <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+              <p class="text-white italic">Syntax: find [path] [options] [expression]</p>
+              <p class="text-white">
+                Here, replace [path] with the directory to start the search, and [options] and [expression] with the conditions 
+                for the search (e.g., file name, size).<br><br>
+              </p>
+              <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+              <p class="text-white">
+                1. -name: Searches for files by name. <br>
+                2. -type: Searches for files of a specific type, such as `f` for regular files or `d` for directories. <br>
+                3. -size: Finds files based on their size (e.g., `+100M` for files larger than 100MB). <br>
+                4. -mtime: Searches for files based on their modification time (e.g., `-mtime -7` for files modified in the 
+                last 7 days). <br>
+                5. -exec: Executes a command on the files that match the search criteria. <br><br>
+              </p>
+              <p class="text-green-500 font-bold">HANDY LINK</p>
+              <p class="text-white">
+                Link to refer: <a href="https://www.geeksforgeeks.org/find-command-in-linux-with-examples/" 
+                  class="text-blue-400 hover:underline" target="_blank">find command</a></br> </br>
+              </p>
+              <h2 class="text-green-500 text-xl">QUESTIONS</h2>
             </div>
+            
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-ps" class="content-section hidden">
-                <h2 class="text-white text-xl">ps Command</h2>
-                <p class="text-white">The ps command is used to display information about active processes.</p>
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-top" class="content-section hidden">
-                <h2 class="text-white text-xl">top Command</h2>
-                <p class="text-white">The top command is used to display real-time information about running processes.</p>
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-df" class="content-section hidden">
-                <h2 class="text-white text-xl">df Command</h2>
-                <p class="text-white">The df command is used to display disk space usage.</p>
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-du" class="content-section hidden">
-                <h2 class="text-white text-xl">du Command</h2>
-                <p class="text-white">The du command is used to estimate file space usage.</p>
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-uptime" class="content-section hidden">
-                <h2 class="text-white text-xl">uptime Command</h2>
-                <p class="text-white">The uptime command is used to tell how long the system has been running.</p>
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-ping" class="content-section hidden">
-                <h2 class="text-white text-xl">ping Command</h2>
-                <p class="text-white">The ping command is used to check the network connectivity between two nodes.</p>
+              <h2 class="text-green-500 font-bold text-xl">ping Command</h2>
+              <p class="text-white">
+                <br> The ping command is used to check the connectivity between your system and a remote host or IP address. It 
+                sends ICMP Echo Request packets to the target and waits for a response to determine the network latency 
+                and packet loss. <br><br>
+              </p>
+              <p class="text-white font-bold italic">
+                I tried using the ping command, but it kept pinging me with no response—guess I was timed out!<br><br>
+              </p>
+              <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+              <p class="text-white italic">Syntax: ping [options] [destination]</p>
+              <p class="text-white">
+                Here, replace [destination] with the hostname or IP address you want to ping.<br><br>
+              </p>
+              <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+              <p class="text-white">
+                1. -c [count]: Specifies the number of requests to send. <br>
+                2. -i [interval]: Sets the interval between sending each packet. <br>
+                3. -t [TTL]: Sets the Time To Live (TTL) for the packets. <br>
+                4. -s [size]: Specifies the size of the packet to send. <br><br>
+              </p>
+              <p class="text-green-500 font-bold">HANDY LINK</p>
+              <p class="text-white">
+                Link to refer: <a href="https://www.geeksforgeeks.org/ping-command-in-linux-with-examples/" 
+                  class="text-blue-400 hover:underline" target="_blank">ping command</a></br> </br>
+              </p>
+              <h2 class="text-green-500 text-xl">QUESTIONS</h2>
             </div>
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-netstat" class="content-section hidden">
-                <h2 class="text-white text-xl">netstat Command</h2>
-                <p class="text-white">The netstat command is used to display network connections, routing tables, and interface statistics.</p>
-            </div>
+              <h2 class="text-green-500 font-bold text-xl">netstat Command</h2>
+              <p class="text-white">
+                <br> The netstat command is used to display network connections, routing tables, interface statistics, and other 
+                network-related information on your system. It's a useful tool for diagnosing networking issues. <br><br>
+              </p>
+              <p class="text-white font-bold italic">
+                I tried netstat, but it left me feeling all disconnected!<br><br>
+              </p>
+              <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+              <p class="text-white italic">Syntax: netstat [options]</p>
+              <p class="text-white">
+                Run netstat without options to display all connections, or use various options to filter the output.<br><br>
+              </p>
+              <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+              <p class="text-white">
+                1. -a: Displays all active connections and listening ports. <br>
+                2. -t: Shows TCP connections. <br>
+                3. -u: Displays UDP connections. <br>
+                4. -l: Shows only listening sockets. <br>
+                5. -n: Displays numerical addresses instead of resolving hostnames. <br><br>
+              </p>
+              <p class="text-green-500 font-bold">HANDY LINK</p>
+              <p class="text-white">
+                Link to refer: <a href="https://www.geeksforgeeks.org/netstat-command-linux/" 
+                  class="text-blue-400 hover:underline" target="_blank">netstat command</a></br> </br>
+              </p>
+              <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+            </div>            
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-ss" class="content-section hidden">
-                <h2 class="text-white text-xl">ss Command</h2>
-                <p class="text-white">The ss command is used to dump socket statistics.</p>
-            </div>
+              <h2 class="text-green-500 font-bold text-xl">ss Command</h2>
+              <p class="text-white">
+                <br> The ss command is used to display socket statistics, including network connections and listening ports, similar 
+                to netstat. It is a faster and more efficient alternative to netstat for inspecting network connections. <br><br>
+              </p>
+              <p class="text-white font-bold italic">
+                I used the ss command, but it just showed me how lost I was!<br><br>
+              </p>
+              <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+              <p class="text-white italic">Syntax: ss [options]</p>
+              <p class="text-white">
+                Run ss with different options to filter and display the desired network information.<br><br>
+              </p>
+              <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+              <p class="text-white">
+                1. -t: Shows TCP sockets. <br>
+                2. -u: Displays UDP sockets. <br>
+                3. -a: Shows all sockets, including listening and non-listening. <br>
+                4. -l: Displays only listening sockets. <br>
+                5. -p: Displays the process using each socket. <br><br>
+              </p>
+              <p class="text-green-500 font-bold">HANDY LINK</p>
+              <p class="text-white">
+                Link to refer: <a href="https://www.geeksforgeeks.org/ss-command-in-linux/" 
+                  class="text-blue-400 hover:underline" target="_blank">ss command</a></br> </br>
+              </p>
+              <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+            </div>            
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-curl" class="content-section hidden">
-                <h2 class="text-white text-xl">curl Command</h2>
-                <p class="text-white">The curl command is used to transfer data from or to a server using various protocols.</p>
-            </div>
+              <h2 class="text-green-500 font-bold text-xl">curl Command</h2>
+              <p class="text-white">
+                <br> The curl command is used to transfer data from or to a server using various network protocols such as HTTP, 
+                FTP, and more. It supports a wide range of options for interacting with APIs and web services. <br><br>
+              </p>
+              <p class="text-white font-bold italic">
+                I tried using curl, but it just left me feeling wrapped up in confusion!<br><br>
+              </p>
+              <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+              <p class="text-white italic">Syntax: curl [options] [URL]</p>
+              <p class="text-white">
+                Replace [URL] with the address you want to interact with.<br><br>
+              </p>
+              <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+              <p class="text-white">
+                1. -O: Saves the output to a file with the same name as the remote file. <br>
+                2. -X [method]: Specifies the request method (e.g., GET, POST). <br>
+                3. -d [data]: Sends data in a POST request. <br>
+                4. -I: Fetches the headers of a URL only. <br>
+                5. -L: Follows redirects. <br><br>
+              </p>
+              <p class="text-green-500 font-bold">HANDY LINK</p>
+              <p class="text-white">
+                Link to refer: <a href="https://www.geeksforgeeks.org/curl-command-in-linux-with-examples/" 
+                  class="text-blue-400 hover:underline" target="_blank">curl command</a></br></br>
+              </p>
+              <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+            </div>                    
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-wget" class="content-section hidden">
-                <h2 class="text-white text-xl">wget Command</h2>
-                <p class="text-white">The wget command is used to download files from the web.</p>
-            </div>
+              <h2 class="text-green-500 font-bold text-xl">wget Command</h2>
+              <p class="text-white">
+                <br> The wget command is used to download files from the web. It supports HTTP, HTTPS, and FTP protocols, and it 
+                is useful for downloading large files or entire websites. It works in the background and can resume downloads. <br><br>
+              </p>
+              <p class="text-white font-bold italic">
+                I tried wget, but it couldn’t download any good vibes!<br><br>
+              </p>
+              <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+              <p class="text-white italic">Syntax: wget [options] [URL]</p>
+              <p class="text-white">
+                Replace [URL] with the address of the file you want to download.<br><br>
+              </p>
+              <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+              <p class="text-white">
+                1. -O [file]: Specifies the name of the file to save as. <br>
+                2. -c: Resumes a download if it was interrupted. <br>
+                3. -r: Downloads the entire website recursively. <br>
+                4. -q: Suppresses output, runs quietly. <br>
+                5. -nc: Skips downloading if the file already exists. <br><br>
+              </p>
+              <p class="text-green-500 font-bold">HANDY LINK</p>
+              <p class="text-white">
+                Link to refer: <a href="https://www.geeksforgeeks.org/wget-command-in-linux-unix/" 
+                  class="text-blue-400 hover:underline" target="_blank">wget command</a></br> </br>
+              </p>
+              <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+            </div>            
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
         </div>
     </body>
