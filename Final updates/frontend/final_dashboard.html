@@ -1,17 +1,53 @@
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Command Reference</title>
+        <title>Terminal Velocity - Dashboard</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
         <style>
             body {
-            font-family: 'Outfit', sans-serif;
+                font-family: 'Outfit', sans-serif;
             }
         </style>
+        <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
         <script>
+            // Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyA6dMM1nW64RvdxoAZtGrySyDc0H_Vjd4w",
+                authDomain: "basil-e1dc0.firebaseapp.com",
+                projectId: "basil-e1dc0",
+                storageBucket: "basil-e1dc0.firebasestorage.app",
+                messagingSenderId: "853138356230",
+                appId: "1:853138356230:web:7836f2aa71155a6e932b87"
+            };
+
+            // Initialize Firebase
+            try {
+                if (!firebase.apps?.length) {
+                    window.firebaseApp = firebase.initializeApp(firebaseConfig);
+                    console.log('Firebase initialized successfully in dashboard');
+                } else {
+                    window.firebaseApp = firebase.app();
+                    console.log('Firebase already initialized in dashboard');
+                }
+            } catch (error) {
+                console.error('Firebase initialization error in dashboard:', error);
+            }
+
+            // Check authentication state
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (!user) {
+                    console.log('No user logged in, redirecting to login');
+                    window.location.href = '/login/';
+                } else {
+                    console.log('User is logged in:', user.email);
+                }
+            });
+
             function toggleSubMenu(id) {
                 const subMenu = document.getElementById(id);
                 subMenu.classList.toggle('hidden');
@@ -23,6 +59,27 @@
                 document.getElementById(contentId).classList.remove('hidden');
                 document.getElementById('content-sidebar').classList.remove('hidden');
             }
+
+            async function handleLogout() {
+                try {
+                    await firebase.auth().signOut();
+                    const response = await fetch('/logout/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        window.location.href = '/login/';
+                    } else {
+                        throw new Error('Logout failed');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert(error.message);
+                }
+            }
         </script>
     </head>
     <body class="bg-gray-900">
@@ -30,7 +87,10 @@
         <!-- Header -->
         <div class="flex justify-between items-center bg-gray-800 p-4">
             <h1 class="text-white text-2xl">Terminal Velocity</h1>
-            <a href="landing.html" class="text-white bg-gray-700 px-4 py-2 rounded-md">Home</a>
+            <div class="flex space-x-4">
+                <a href="/landing/" class="text-white bg-gray-700 px-4 py-2 rounded-md hover:bg-gray-600">Home</a>
+                <button onclick="handleLogout()" class="text-white bg-red-600 px-4 py-2 rounded-md hover:bg-red-700">Logout</button>
+            </div>
         </div>
         <div class="flex flex-1">
         <!-- Sidebar -->
@@ -145,7 +205,7 @@
                     a huge file, should use less command alternatively. <br><br>
                 </p>
                 <p class="text-white font-bold italic">
-                    My cat refuses to get on the terminal. Guess she doesn’t like the cat command.<br><br>
+                    My cat refuses to get on the terminal. Guess she doesn't like the cat command.<br><br>
                 </p>
                 <p class="text-green-500 font-bold">NORMAL OPERATION</p>
                 <p class="text-white italic">Syntax: cat [option] [file]</p>
@@ -213,7 +273,7 @@
                 <h2 class="text-green-500 font-bold text-xl">sed Command</h2>
                 <p class="text-white">
                     <br> The sed command is a non-interactive text editor that allows you to perform basic text transformations on an 
-                    input stream (a file or input from a pipe). It’s often used for tasks like searching and replacing text, deleting 
+                    input stream (a file or input from a pipe). It's often used for tasks like searching and replacing text, deleting 
                     lines, inserting new lines, and more. <br><br>
                 </p>
                 <p class="text-white font-bold italic">
@@ -316,12 +376,12 @@
                     the contents of a directory, allowing users to see the names of file, directories, and their details.<br> <br>
                 </p>
                 <p class="text-white font-bold italic">
-                    I told my computer to ls the files... now it’s listing all the reasons it’s the best.<br><br>
+                    I told my computer to ls the files... now it's listing all the reasons it's the best.<br><br>
                 </p>
                 <p class="text-green-500 font-bold">NORMAL OPERATION</p>
                 <p class="text-white italic">Syntax: ls [option] [file/directory]</p>
                 <p class="text-white">
-                    This will display the contents of the current directory. By default, ‘ls’ lists files and directories 
+                    This will display the contents of the current directory. By default, 'ls' lists files and directories 
                     in alphabetical order.<br><br>
                 </p>
                 <p class="text-green-500 font-bold">COMMON OPTIONS</p>
@@ -384,7 +444,7 @@
                 <p class="text-green-500 font-bold">NORMAL OPERATION</p>
                 <p class="text-white italic">Syntax: pwd [option]</p>
                 <p class="text-white">
-                    This command doesn’t have any arguments or options, but it can accept flags for specific behavior.<br><br>
+                    This command doesn't have any arguments or options, but it can accept flags for specific behavior.<br><br>
                 </p>
                 <p class="text-green-500 font-bold">COMMON OPTIONS</p>
                 <p class="text-white">
@@ -406,7 +466,7 @@
                     <br> The mkdir command allows you to create fresh directories in the terminal itself.<br> <br>
                 </p>
                 <p class="text-white font-bold italic">
-                    I tried to mkdir a new friend, but I’m still looking for a proper connection...<br><br>
+                    I tried to mkdir a new friend, but I'm still looking for a proper connection...<br><br>
                 </p>
                 <p class="text-green-500 font-bold">NORMAL OPERATION</p>
                 <p class="text-white italic">Syntax: mkdir [options] [directory_name]</p>
@@ -565,7 +625,7 @@
                 will be updated without modifying the content. <br><br>
               </p>
               <p class="text-white font-bold italic">
-                I tried using the touch command on my computer, but it didn’t feel very touching.<br><br>
+                I tried using the touch command on my computer, but it didn't feel very touching.<br><br>
               </p>
               <p class="text-green-500 font-bold">NORMAL OPERATION</p>
               <p class="text-white italic">Syntax: touch [options] [file_name]</p>
@@ -756,7 +816,7 @@
                 is useful for downloading large files or entire websites. It works in the background and can resume downloads. <br><br>
               </p>
               <p class="text-white font-bold italic">
-                I tried wget, but it couldn’t download any good vibes!<br><br>
+                I tried wget, but it couldn't download any good vibes!<br><br>
               </p>
               <p class="text-green-500 font-bold">NORMAL OPERATION</p>
               <p class="text-white italic">Syntax: wget [options] [URL]</p>

@@ -1,9 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Terminal Velocity</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <style>
         body {
             margin: 0;
@@ -123,17 +126,17 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <a href="#">Terminal Velocity</a>
+            <a href="/">Terminal Velocity</a>
         </div>
         <div class="nav-links">
-            <a href="learn.html" id="learn">Learn</a>
+            <a href="/learn/" id="learn">Learn</a>
             <a href="#about" id="about">About Us</a>
             <a href="#contact" id="contact">Contact Us</a>
             <div class="dropdown">
                 <a href="#" id="profile">Profile <i class="fas fa-caret-down"></i></a>
                 <div class="dropdown-content">
-                    <a href="settings.html">Settings</a>
-                    <a href="signin.html">Logout</a>
+                    <a href="/settings/">Settings</a>
+                    <a href="#" onclick="handleLogout(event)">Logout</a>
                 </div>
             </div>
         </div>
@@ -197,5 +200,89 @@
     </div>
 
     <div class="white-section"></div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6dMM1nW64RvdxoAZtGrySyDc0H_Vjd4w",
+            authDomain: "basil-e1dc0.firebaseapp.com",
+            projectId: "basil-e1dc0",
+            storageBucket: "basil-e1dc0.firebasestorage.app",
+            messagingSenderId: "853138356230",
+            appId: "1:853138356230:web:7836f2aa71155a6e932b87"
+        };
+
+        // Initialize Firebase
+        try {
+            if (!firebase.apps?.length) {
+                window.firebaseApp = firebase.initializeApp(firebaseConfig);
+                console.log('Firebase initialized successfully in landing');
+            } else {
+                window.firebaseApp = firebase.app();
+                console.log('Firebase already initialized in landing');
+            }
+        } catch (error) {
+            console.error('Firebase initialization error in landing:', error);
+        }
+
+        // Get CSRF token from cookie
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        async function handleLogout(event) {
+            event.preventDefault();
+            try {
+                // Sign out from Firebase
+                await firebase.auth().signOut();
+                
+                // Get CSRF token
+                const csrftoken = getCookie('csrftoken');
+                
+                // Send logout request to backend
+                const response = await fetch('/logout/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken
+                    },
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    console.log('Logout successful');
+                    window.location.href = '/login/';
+                } else {
+                    console.error('Logout failed:', await response.text());
+                    throw new Error('Logout failed');
+                }
+            } catch (error) {
+                console.error('Error during logout:', error);
+                alert('Logout failed: ' + error.message);
+            }
+        }
+
+        // Check authentication state on page load
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                console.log('No user logged in, redirecting to login');
+                window.location.href = '/login/';
+            } else {
+                console.log('User is logged in:', user.email);
+            }
+        });
+    </script>
 </body>
 </html>
+
