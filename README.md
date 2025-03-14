@@ -4,8 +4,8 @@ Mini project for S6 - Computer Science Engineering
 ### Project Team:
  - etk-23 (Terminal)
  - Giga4byte (Front-End)
- - MaysaSameer (Django & Firebase)
- - 
+ - MAYSASAMEER (Back-End & Firebase)
+ - Eesh24K (Back-End)
 
 
 ## Introduction and Details
