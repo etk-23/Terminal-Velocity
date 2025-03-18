@@ -1,0 +1,172 @@
+
+
+
+TerminalVelocity:~$ pwd
+/home
+TerminalVelocity:~$ ls
+Desktop
+Documents
+Downloads
+Music
+Pictures
+Public
+s3
+s4
+s5
+s6
+Videos
+TerminalVelocity:~$ cd s6
+TerminalVelocity:~/s6$ pwd
+/home/s6
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   test.txt
+ d3client.c   d3server.c             server
+TerminalVelocity:~/s6$ mkdir s6_dummy
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   server
+ d3client.c   d3server.c             s6_dummy               test.txt
+TerminalVelocity:~/s6$ cd s6_dummy
+TerminalVelocity:~/s6/s6_dummy$ pwd
+/home/s6/s6_dummy
+TerminalVelocity:~/s6/s6_dummy$ ls
+TerminalVelocity:~/s6/s6_dummy$ cd ..
+TerminalVelocity:~/s6$ pwd
+/home/s6
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   server
+ d3client.c   d3server.c             s6_dummy               test.txt
+TerminalVelocity:~/s6$ rmdir s6_dummy
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   test.txt
+ d3client.c   d3server.c             server
+TerminalVelocity:~/s6$ cd ..
+TerminalVelocity:~$ pwd
+/home
+TerminalVelocity:~$ 
+---------------------------------------------------------------------------------------------------------------------------------
+TerminalVelocity:~$ cd s5
+TerminalVelocity:~/s5$ ls
+a.out  cipher.c
+TerminalVelocity:~/s5$ cd ..
+TerminalVelocity:~$ cd s6
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   test.txt
+ d3client.c   d3server.c             server
+TerminalVelocity:~/s6$ cat test.txt
+Hi
+I'm Elena!
+Who are you?!
+TerminalVelocity:~/s6$ tac test.txt
+Who are you?!
+I'm Elena!
+Hi
+TerminalVelocity:~/s6$ cp test.txt destination.txt
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   server
+ d3client.c   d3server.c             destination.txt        test.txt
+TerminalVelocity:~/s6$ cat destination.txt
+Hi
+I'm Elena!
+Who are you?!
+TerminalVelocity:~/s6$ cp test.txt /home/s5/
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   server
+ d3client.c   d3server.c             destination.txt        test.txt
+TerminalVelocity:~/s6$ cd ..
+TerminalVelocity:~$ cd s5
+TerminalVelocity:~/s5$ ls
+a.out  cipher.c  test.txt
+TerminalVelocity:~/s5$ cat test.txt
+Hi
+I'm Elena!
+Who are you?!
+TerminalVelocity:~/s5$ 
+TerminalVelocity:~/s5$ mv src.txt /home/s6/
+TerminalVelocity:~/s5$ ls
+a.out  cipher.c
+TerminalVelocity:~/s5$ cd ..
+TerminalVelocity:~$ cd s6
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   server    test.txt
+ d3client.c   d3server.c             destination.txt        src.txt
+TerminalVelocity:~/s6$ cat src.txt
+Hi
+I'm Elena!
+Who are you?!
+TerminalVelocity:~/s6$ 
+TerminalVelocity:~/s6$ rm src.txt
+TerminalVelocity:~/s6$ ls
+ client      'd3client (final?).c'  'd3server (final?).c'   server
+ d3client.c   d3server.c             destination.txt        test.txt
+TerminalVelocity:~/s6$ rm destination.txt 'd3client (final?).c'  'd3server (final?).c'
+TerminalVelocity:~/s6$ ls
+client  d3client.c  d3server.c  server  test.txt
+TerminalVelocity:~/s6$ 
+TerminalVelocity:~/s6$ touch new.txt
+TerminalVelocity:~/s6$ ls
+client  d3client.c  d3server.c  new.txt  server  test.txt
+TerminalVelocity:~/s6$ cat new.txt
+TerminalVelocity:~/s6$ touch test.txt new.txt
+TerminalVelocity:~/s6$ ls
+client  d3client.c  d3server.c  new.txt  server  test.txt
+TerminalVelocity:~/s6$ cat test.txt
+Hi
+I'm Elena!
+Who are you?!
+TerminalVelocity:~/s6$ ls
+client  d3client.c  d3server.c  new.txt  server  test.txt
+TerminalVelocity:~/s6$ find . -name "new.txt"
+./new.txt
+TerminalVelocity:~/s6$ find . -name "old.txt"
+TerminalVelocity:~/s6$ find /home/s5/ cipher.c
+/home/s5/
+/home/s5/cipher.c
+/home/s5/a.out
+find: ‘cipher.c’: No such file or directory
+TerminalVelocity:~/s6$ find /home/s5/cipher.c
+/home/s5/cipher.c
+TerminalVelocity:~/s6$ find /home/s5/random.c
+find: ‘/home/s5/random.c’: No such file or directory
+TerminalVelocity:~/s6$ find /home/s5/
+/home/s5/
+/home/s5/cipher.c
+/home/s5/a.out
+TerminalVelocity:~/s6$ find .
+.
+./test.txt
+./d3server.c
+./server
+./client
+./new.txt
+./d3client.c
+TerminalVelocity:~/s6$ 
+
+the above is how i want the output to look, when i input the commands. things to note, that weren't present in the code you previously gave:
+1. before the $ sign, i want 'TerminalVelocity:~' along with the current directory given.
+example: if in home directory, TerminalVelocity:~$
+if in s6 directory, TerminalVelocity:~/s6$
+
+2. in the home directory (initial directory), i want the following subdirectories to be already present:
+Desktop
+Documents
+Downloads
+Music
+Pictures
+Public
+s3
+s4
+s5
+s6
+Videos
+
+3. inside subdirectory s6, i want the text files 'file1.txt' and 'file2.txt' to be present, with file.txt contents:
+Hi!
+I'm Elena!
+Who are you?!
+
+and file2.txt contents:
+Hey there girl!
+Nice to meet you!
+I would like to remain anonymous...
+
+pls ensure the code will give the output as shown above...

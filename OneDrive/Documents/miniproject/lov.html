@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Terminal Simulator</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+        }
+        #terminal {
+            width: 80%;
+            height: 500px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 2px solid white;
+            margin: 20px auto;
+        }
+        .input-line {
+            display: flex;
+        }
+        .hostname {
+            color: lightpink;
+        }
+        .directory {
+            color: blue;
+        }
+        .command {
+            color: white;
+        }
+        .folder {
+            color: green;
+        }
+        .output {
+            color: white;
+        }
+        input {
+            background: none;
+            border: none;
+            color: white;
+            outline: none;
+            font-family: monospace;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal"></div>
+    <script>
+        class CommandProcessor {
+            constructor() {
+                this.currentDirectory = '~';
+                this.fileSystem = {
+                    '~': ['Desktop', 'Documents', 'Downloads', 'Music', 'Pictures', 'Public', 's3', 's4', 's5', 's6', 'Videos'],
+                    's6': ['file1.txt', 'file2.txt']
+                };
+                this.commandHistory = [];
+                this.historyIndex = -1;
+            }
+
+            processCommand(commandStr) {
+                this.commandHistory.push(commandStr);
+                this.historyIndex = this.commandHistory.length;
+                const parts = commandStr.trim().split(/\s+/);
+                const command = parts[0].toLowerCase();
+                const args = parts.slice(1);
+                switch (command) {
+                    case 'ls':
+                        return this.ls();
+                    case 'cd': 
+                        return this.cd(args);
+                    case 'pwd': 
+                        return {type: 'success', content: this.fileSystem.getCurrentPathString().replace('~', '/home/user')};
+                    /*case 'mkdir':
+                        return this.mkdir(args);
+                    case 'rmdir':
+                        return this.rmdir(args);
+                    case 'touch':
+                        return this.touch(args);
+                    case 'cat':
+                        return this.cat(args);
+                    case 'rm':
+                        return this.rm(args);
+                    case 'cp':
+                        return this.cp(args);
+                    case 'mv':
+                        return this.mv(args);
+                    case 'find':
+                        return this.find(args);
+                    case 'grep':
+                        return this.grep(args);
+                    case 'clear':
+                        return { type: 'clear' };
+                    case 'help':
+                        return this.help();*/
+                    case '':
+                        return { type: 'empty' };
+                    default:
+                        return {type: 'error', content: `Command not found: ${command}`};
+                    default: 
+                        return { type: 'error', content: `Command not found: ${command}` };
+                }
+            }
+            
+            ls() {
+                const items = this.fileSystem[this.currentDirectory] || [];
+                return {
+                    type: 'success',
+                    content: items.map(item => `<span class="${item.includes('.') ? 'file' : 'folder'}">${item}</span>`).join('   ')
+                };
+            }
+
+            cd(args) {
+                if (!args.length) return { type: 'error', content: 'cd: missing operand' };
+                const targetDir = args[0];
+                if (this.fileSystem[targetDir]) {
+                    this.currentDirectory = targetDir;
+                    return { type: 'success', content: '' };
+                }
+                return { type: 'error', content: `cd: no such directory: ${targetDir}` };
+            }
+
+            mkdir(args){
+                if (!args.length){
+                    return {type: 'error', content: 'mkdir: missing operand'};
+                }
+                
+                const results = [];
+                for (const dir of args) {
+                    const success = this.fileSystem.makeDirectory(dir);
+                    if (!success) {
+                        results.push(`mkdir: cannot create directory '${dir}': File exists or invalid name`);
+                    }
+                }
+                
+                if (results.length) {
+                    return {
+                        type: 'error',
+                        content: results.join('\n')
+                    };
+                } 
+                else {
+                    return {type: 'success',content: ''};
+                }
+            }
+            rmdir(args) {
+                if (!args.length) {
+                    return {type: 'error', content: 'rmdir: missing operand'};
+                }
+                
+                const results = [];
+                for (const dir of args) {
+                    const success = this.fileSystem.removeDirectory(dir);
+                    if (!success) {
+                        results.push(`rmdir: failed to remove '${dir}': No such directory or directory not empty`);
+                    }
+                }
+                
+                if (results.length) {
+                    return {type: 'error', content: results.join('\n')};
+                } 
+                else {
+                    return {type: 'success', content: ''};
+                }
+            }
+
+            getPrompt() {
+                return { hostname: 'Terminal Velocity', path: this.currentDirectory };
+            }
+        }
+
+        
+
+         // Get previous command from history
+        getPreviousCommand() {
+            if (this.historyIndex > 0) {
+            this.historyIndex--;
+            return this.commandHistory[this.historyIndex];
+            }
+            return null;
+        }
+
+        // Get next command from history
+        getNextCommand() {
+            if (this.historyIndex < this.commandHistory.length - 1) {
+            this.historyIndex++;
+            return this.commandHistory[this.historyIndex];
+            } else if (this.historyIndex === this.commandHistory.length - 1) {
+            this.historyIndex = this.commandHistory.length;
+            return '';
+            }
+            return null;
+        }
+
+        const terminal = document.getElementById("terminal");
+        const processor = new CommandProcessor();
+
+        function appendInputLine() {
+            const prompt = processor.getPrompt();
+            const line = document.createElement("div");
+            line.classList.add("input-line");
+            line.innerHTML = `<span class='hostname'>${prompt.hostname}</span>
+                              <span class='colon'>:</span>
+                              <span class='directory'>${prompt.path}</span>
+                              <span class='command'>$</span>
+                              <input type='text' autofocus onkeydown='handleCommand(event, this)'>`;
+            terminal.appendChild(line);
+            line.querySelector("input").focus();
+        }
+
+        function handleCommand(event, inputElement) {
+            if (event.key === "Enter") {
+                const command = inputElement.value;
+                inputElement.disabled = true;
+                processCommand(command);
+            }
+        }
+
+        function processCommand(command) {
+            const response = processor.processCommand(command);
+            const outputLine = document.createElement("div");
+            outputLine.classList.add("output");
+            outputLine.innerHTML = response.content ? response.content.replace(/\n/g, "<br>") : "";
+            terminal.appendChild(outputLine);
+            setTimeout(appendInputLine, 100);
+        }
+
+        appendInputLine();
+    </script>
+</body>
+</html>

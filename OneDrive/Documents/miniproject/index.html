@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Emulator</title>
+    <style>
+        body { font-family: monospace; background-color: black; color: white; padding: 20px; }
+        #terminal { width: 600px; height: 400px; overflow-y: auto; border: 1px solid white; padding: 10px; }
+        #input { width: 100%; background: black; color: white; border: none; outline: none; font-family: monospace; }
+        .prompt { color: lightpink; }
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <div id="output"></div>
+        <div>
+            <span class="prompt">$ </span>
+            <input type="text" id="input" autofocus />
+        </div>
+    </div>
+
+    <script src="test.js"></script>
+</body>
+</html>

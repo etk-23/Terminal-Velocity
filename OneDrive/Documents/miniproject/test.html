@@ -1,0 +1,132 @@
+/* -----OUTPUT-----
+$ pwd
+/home
+$ ls
+$ cd elena
+$ pwd
+/home
+$ mkdir elena
+$ ls
+elena
+$ cd elena
+$ pwd
+/home/elena
+$ cd ..
+$ pwd
+/home/elena
+$ ls
+$
+ */
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Emulator</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            padding: 20px;
+        }
+        #terminal {
+            width: 80%;
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid white;
+            padding: 10px;
+            background-color: #1e1e1e;
+        }
+        #input-line {
+            display: flex;
+            align-items: center;
+        }
+        #prompt {
+            color: lightgreen;
+        }
+        #command-input {
+            background: none;
+            border: none;
+            color: white;
+            outline: none;
+            font-size: 16px;
+            font-family: monospace;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="terminal">
+        <div id="output"></div>
+        <div id="input-line">
+            <span id="prompt">$</span>&nbsp;
+            <input type="text" id="command-input" autofocus>
+        </div>
+    </div>
+
+    <script>
+        const terminal = document.getElementById("output");
+        const commandInput = document.getElementById("command-input");
+
+        let currentPath = "/home";
+        let fileSystem = {
+            "/home": []
+        };
+
+        function updateTerminal(command, output = "") {
+            terminal.innerHTML += `<div><span style="color:lightgreen">$</span> ${command}</div>`;
+            if (output) terminal.innerHTML += `<div>${output}</div>`;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function processCommand(cmd) {
+            let args = cmd.trim().split(" ");
+            let command = args[0];
+
+            if (command === "ls") {
+                let contents = fileSystem[currentPath] || [];
+                updateTerminal(cmd, contents.length ? contents.join(" ") : "");
+            } 
+            else if (command === "pwd") {
+                updateTerminal(cmd, currentPath);
+            } 
+            else if (command === "mkdir") {
+                if (args[1]) {
+                    let newDir = args[1];
+                    let newPath = `${currentPath}/${newDir}`;
+                    if (!fileSystem[newPath]) {
+                        fileSystem[newPath] = [];
+                        fileSystem[currentPath].push(newDir);
+                    }
+                }
+                updateTerminal(cmd);
+            } 
+            else if (command === "cd") {
+                if (args[1]) {
+                    let targetDir = args[1];
+                    let newPath = `${currentPath}/${targetDir}`;
+                    if (fileSystem[newPath]) {
+                        currentPath = newPath;
+                    }
+                }
+                updateTerminal(cmd);
+            } 
+            else {
+                updateTerminal(cmd, `Command not found: ${command}`);
+            }
+        }
+
+        commandInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                let cmd = commandInput.value;
+                commandInput.value = "";
+                processCommand(cmd);
+            }
+        });
+    </script>
+
+</body>
+</html>
