@@ -14,7 +14,12 @@ body {
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Enables scrolling */
+    max-height: 400px; /* Adjust this based on your design */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: gray black; /* Scrollbar styling */
 }
 
 #output {
@@ -32,7 +37,7 @@ body {
     margin-right: 5px;
 }
 
-.path {
+.subdir-path {
     color: #0088ff;
 }
 
