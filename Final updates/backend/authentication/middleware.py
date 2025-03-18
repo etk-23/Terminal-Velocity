@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from firebase_admin import auth, credentials, initialize_app
 import firebase_admin
 from django.conf import settings
-import json
+
 
 def initialize_firebase():
     try:
