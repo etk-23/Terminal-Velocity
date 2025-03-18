@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // --------------------------- TASK TRACKING VARIABLES ---------------------------
     let arr = Array(25).fill(0); // Keeps track of command completion status (0 = not completed, 1 = completed)
     let arr2 = [
-        'echo', 'pwd', 'ls', 'cd', 'cd ..', 'cd ~', 'cat', 'touch', 'cp', 'rm', 'mkdir',
+        'echo', 'pwd', 'ls', 'cd', 'cat', 'touch', 'cp', 'rm', 'mkdir',
         'clear', 'uname', 'date', 'ifconfig', 'tty', 'history', 'tac', 'rmdir', 'mv',
         'find', 'sed', 'awk', 'grep', 'ping'
     ]; // List of all commands to track
@@ -91,11 +91,11 @@ document.addEventListener('DOMContentLoaded', function(){
             e.preventDefault(); // Prevent cursor from moving to end of input
         }
     });
+    
 
     // --------------------------- Display INITIAL WELCOME MESSAGES ---------------------------
     echoOutput("Welcome to the Linux Terminal Emulator!");
     echoOutput("Type 'help' to see available commands.");
-    echoOutput("Start with 'echo hello' to begin learning command line basics.");
     echoOutput("");
 
     /**  --------------------------- PROCESS USER INPUT / COMMANDS ---------------------------
