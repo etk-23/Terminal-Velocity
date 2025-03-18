@@ -12,7 +12,9 @@ Mini project for S6 - Computer Science Engineering
 
 ### Relevance of the Domain:  
 Mastery of Linux commands is crucial for system administration, software development, and automation.
-gay
+
+GEY
+
 ### Brief Overview of the Application: 
 "Terminal Velocity" is a web-based platform that teaches users essential Linux commands through interactive tutorials and practical exercises.
 
