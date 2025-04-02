@@ -47,6 +47,72 @@ document.addEventListener('DOMContentLoaded', function(){
         commandInput.focus();
     });
 
+    // Function to handle command input
+    function handleCommand(command, questionContainer) {
+        // Trim whitespace from the command
+        command = command.trim();
+        
+        // Get the correct answer from the HTML comment
+        const questionText = questionContainer.querySelector('p').innerHTML;
+        const correctAnswerMatch = questionText.match(/<!-- Correct answer: (.*?) -->/);
+        const correctAnswer = correctAnswerMatch ? correctAnswerMatch[1].trim() : null;
+        
+        // Log for debugging
+        console.log('Input command:', command);
+        console.log('Correct answer:', correctAnswer);
+        
+        // Check if the command matches the correct answer exactly
+        if (command === correctAnswer) {
+            alert("CORRECT!");
+        } else {
+            alert("WRONG!");
+        }
+    }
+
+    // Add event listeners to all input fields
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to add event listeners to input fields
+        function addInputListeners() {
+            const inputFields = document.querySelectorAll('.answer-input');
+            inputFields.forEach(input => {
+                // Remove any existing listeners to prevent duplicates
+                input.removeEventListener('keypress', handleKeyPress);
+                // Add new listener
+                input.addEventListener('keypress', handleKeyPress);
+            });
+        }
+
+        // Function to handle keypress events
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                const questionContainer = this.closest('.question-container');
+                handleCommand(this.value, questionContainer);
+            }
+        }
+
+        // Initial setup
+        addInputListeners();
+
+        // Add listeners when content sections are shown
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList' || mutation.type === 'attributes') {
+                    addInputListeners();
+                }
+            });
+        });
+
+        // Observe the content-sidebar for changes
+        const contentSidebar = document.getElementById('content-sidebar');
+        if (contentSidebar) {
+            observer.observe(contentSidebar, {
+                childList: true,
+                subtree: true,
+                attributes: true
+            });
+        }
+    }); 
+
     // ----- EVENT LISTENER ----- : Handle keyboard input for COMMAND PROCESSING and HISTORY NAVIGATION
     commandInput.addEventListener('keydown', function(e){
         if (e.key === 'Enter'){
@@ -94,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
 
     // --------------------------- Display INITIAL WELCOME MESSAGES ---------------------------
-    echoOutput("Welcome to the Linux Terminal Emulator!");
+    echoOutput("Welcome to your interactive Linux terminal! Type a command to begin.");
     echoOutput("Type 'help' to see available commands.");
     echoOutput("");
 
@@ -535,7 +601,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
                 // Validate option
                 if (option !== '-name'){
-                    echoOutput('find: Only -name option is supported in this emulator');
+                    echoOutput('find: Only -name option is supported in this terminal');
                     return;
                 }
 
@@ -598,7 +664,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     startDirIndex = o[pwdv[pwdv.length - 1]];
                     startPath = '.';
                 } else {
-                    // Not implementing complex path handling for this emulator
+                    // Not implementing complex path handling for this terminal
                     echoOutput('find: Only searching in current directory (.) is supported');
                     return;
                 }
@@ -956,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', function(){
      * About - displays information about the application
      */
     function about(){
-        echoOutput("<p>Linux Terminal Emulator is a web-based application that simulates a Linux terminal environment.</p>");
+        echoOutput("<p>Terminal Velocity is a web-based application that simulates a Linux terminal environment.</p>");
         echoOutput("<p>It provides a hands-on experience for learning basic Linux commands.</p>");
     }
 
