@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let timeLeft = 60;
+            let score = 0;
+            const timerElement = document.getElementById('timer');
+            const scoreElement = document.getElementById('score');
+
+            let interval = setInterval(updateTimer, 1000);
+
+            function updateTimer() {
+                if (timeLeft <= 0) {
+                    alert('Time is up!');
+                    score -= 5;
+                    scoreElement.textContent = `Score: ${score}`;
+                    loadNextQuestion();
+                } else {
+                    timerElement.textContent = `Time left: ${timeLeft} seconds`;
+                    timeLeft -= 1;
+                }
+            }
+
+            const questions = [
+                {
+                    question: "You're a detective investigating a mysterious cyber heist. The hacker left behind an encrypted USB drive plugged into a Linux workstation. Your first task is to examine what files are stored in the directory before you proceed with deeper analysis. What command should you use to list the files and gather initial clues?",
+                    answer: "ls"
+                },
+                {
+                    question: "After listing the files in the hacker’s directory using ls, you discover a folder named 'Operations' and a text file called 'passwords.txt'. The folder name seems more promising, so you decide to dig deeper.\n\nWhat command should you use?",
+                    answer: "cd"
+                },
+                {
+                    question: "Inside the 'Operations' directory, you find multiple files with strange names and extensions. But something feels off—there’s no clear organization, and you suspect ShadowFox used a hidden system to store their most sensitive data.\nTo keep track of your findings, you decide to create a new folder called 'Evidence' where you can safely store copies of any critical files.\n\nWhat command should you use to create this new directory?",
+                    answer: "mkdir"
+                },
+                {
+                    question: "Your hands tremble slightly as you prepare to unveil ShadowFox's secrets. The file 'passwords.txt' might be the key to breaking the case. You need to read its contents without modifying it.\n\nWhat command should you use?",
+                    answer: "cat"
+                },
+                {
+                    question: "The 'passwords.txt' file contains a long list of credentials, but you don’t have time to sift through everything manually. You need to find any entries related to ShadowFox quickly.\n\nWhat command should you use to search for the keyword 'ShadowFox' inside 'passwords.txt'?",
+                    answer: "grep"
+                },
+                {
+                    question: "You’ve found crucial information in 'passwords.txt', but you can’t risk modifying the original file. To analyze it further without compromising the integrity of the hacker’s system, you decide to make a copy of the file and store it in your 'Evidence' folder.\n\nWhat command should you use to copy 'passwords.txt' into the 'Evidence' directory?",
+                    answer: "cp"
+                },
+                {
+                    question: "After gathering enough evidence, you prepare the final case report. You need to compile all crucial findings—passwords, logs, and notes—into a single file for submission to the Cybercrime Division.\n\nTo do this, you decide to combine everything into one final report file named 'case_closed.txt'.\n\nWhat command should you use to merge 'passwords.txt', 'logs.txt', and 'notes.txt' into one complete report?",
+                    answer: "cat"
+                }
+            ];
+
+            let currentQuestionIndex = 0;
+            const questionElement = document.getElementById('question');
+            const inputElement = document.getElementById('answer');
+            const buttonElement = document.getElementById('submit');
+
+            function loadQuestion() {
+                questionElement.textContent = questions[currentQuestionIndex].question;
+                inputElement.value = '';
+                inputElement.focus();
+                buttonElement.classList.remove('bg-green-600');
+                buttonElement.classList.add('bg-blue-600');
+                buttonElement.textContent = 'Submit';
+                timeLeft = 60;
+            }
+
+            function loadNextQuestion() {
+                currentQuestionIndex++;
+                if (currentQuestionIndex >= questions.length) {
+                    alert(`Game Over! Your final score is ${score}`);
+                    clearInterval(interval);
+                    return;
+                }
+                loadQuestion();
+            }
+
+            buttonElement.addEventListener('click', function() {
+                const userAnswer = inputElement.value.trim().toLowerCase();
+                if (userAnswer === questions[currentQuestionIndex].answer) {
+                    buttonElement.classList.remove('bg-blue-600');
+                    buttonElement.classList.add('bg-green-600');
+                    buttonElement.textContent = 'Correct!';
+                    score += timeLeft;
+                    scoreElement.textContent = `Score: ${score}`;
+                    setTimeout(loadNextQuestion, 1000);
+                } else {
+                    alert('Incorrect answer. Try again.');
+                }
+            });
+
+            loadQuestion();
+        });
+    </script>
+</head>
+<body class="bg-gradient-to-b from-black via-[#080C0F] to-[#51688E] flex items-center justify-center min-h-screen">
+	<div class="absolute top-4 left-4">
+        <a href="/landing/" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Home</a>
+    </div>
+    <div class="bg-gray-900 text-center p-8 rounded-lg shadow-lg">
+        <h1 class="text-4xl font-bold text-blue-400 mb-4" style="font-family: 'Press Start 2P', cursive;">Linux Command Test</h1>
+        <p id="question" class="text-lg text-blue-300 mb-6"></p>
+        <div class="flex justify-center mb-4">
+            <input id="answer" type="text" placeholder="Type your answer here..." class="p-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="submit" class="bg-blue-600 text-white p-2 rounded-r-lg hover:bg-blue-700">Submit</button>
+        </div>
+        <p id="timer" class="text-lg text-red-500 mb-4"></p>
+        <p id="score" class="text-lg text-white">Score: 0</p>
+    </div>
+</body>
+</html>
