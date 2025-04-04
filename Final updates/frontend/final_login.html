@@ -120,7 +120,7 @@
           });
 
           if (response.ok) {
-            window.location.href = '/dashboard/';
+            window.location.href = '/landing/';
           } else {
             throw new Error('Login failed. Please try again.');
           }
@@ -129,6 +129,23 @@
           alert(error.message);
         }
       }
+      firebase.auth().onAuthStateChanged(async function(user) {
+            if (user) {
+                const db = firebase.firestore();
+                const userRef = db.collection('Users').doc(user.uid);
+                const doc = await userRef.get();
+
+                if (!doc.exists) {
+                await userRef.set({
+                    email: user.email,
+                    unlockedLevel: 1
+                });
+                console.log('User added to Firestore');
+                } else {
+                console.log('User already exists in Firestore');
+                }
+            }
+      });
     </script>
   </body>
 </html>

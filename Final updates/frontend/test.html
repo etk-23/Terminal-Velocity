@@ -82,7 +82,15 @@
                 loadQuestion();
             }
 
-            buttonElement.addEventListener('click', function() {
+            buttonElement.addEventListener('click', processAnswer);
+
+            inputElement.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    processAnswer();
+                }
+            });
+
+            function processAnswer() {
                 const userAnswer = inputElement.value.trim().toLowerCase();
                 if (userAnswer === questions[currentQuestionIndex].answer) {
                     buttonElement.classList.remove('bg-blue-600');
@@ -94,14 +102,17 @@
                 } else {
                     alert('Incorrect answer. Try again.');
                 }
-            });
+            }
+
 
             loadQuestion();
         });
+        
+
     </script>
 </head>
 <body class="bg-gradient-to-b from-black via-[#080C0F] to-[#51688E] flex items-center justify-center min-h-screen">
-	<div class="absolute top-4 left-4">
+<div class="absolute top-4 left-4">
         <a href="/landing/" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Home</a>
     </div>
     <div class="bg-gray-900 text-center p-8 rounded-lg shadow-lg">

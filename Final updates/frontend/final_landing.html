@@ -58,7 +58,7 @@
             display: block;
         }
         .landing-section {
-            background: url('landing.jpeg') no-repeat center center; 
+            background: url('/static/landing_page.jpeg') no-repeat center center; 
             background-size: 1585px 720px;
             min-height: 100vh;
             display: flex;
@@ -126,16 +126,15 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <a href="/">Terminal Velocity</a>
+            <a href="/landing/">Terminal Velocity</a>
         </div>
         <div class="nav-links">
-            <a href="final_dashboard.html" id="learn">Learn</a>
-            <a href="#about" id="about">About Us</a>
-            <a href="#contact" id="contact">Contact Us</a>
+            <a href="/dashboard/" id="learn">Learn</a>
+            <a href="#about">About Us</a>
+            <a href="#contact"">Contact Us</a>
             <div class="dropdown">
                 <a href="#" id="profile">Profile <i class="fas fa-caret-down"></i></a>
                 <div class="dropdown-content">
-                    <a href="settings.html">Settings</a>
                     <a href="final_login.html" onclick="handleLogout(event)">Logout</a>
                 </div>
             </div>
@@ -286,4 +285,3 @@
     </script>
 </body>
 </html>
-
