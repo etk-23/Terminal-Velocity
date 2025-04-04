@@ -3,10 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Terminal Velocity - Dashboard</title>
+        <title>Dashboard</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/static/terminal.css">
         <style>
             body {
@@ -25,6 +26,14 @@
                 color: black !important;
             }
 
+            #sparkle-canvas {
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+            }
+            
+
+            
         </style>
         <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
@@ -186,10 +195,19 @@
         </script>
     </head>
     <body class="bg-gray-900">
+
         <div class="flex flex-col h-screen">
         <!-- Header -->
         <div class="flex justify-between items-center bg-gray-800 p-4">
-            <h1 class="text-white text-2xl"> <a href="/landing/"> Terminal Velocity </a> </h1>
+            <div id="sparkle-container" class="relative inline-block group">
+                <h1 id="sparkle-text"
+                    class="text-white text-base transition duration-300 group-hover:scale-105"
+                    style="font-family: 'Press Start 2P', cursive;">
+                  <a href="/landing/">Terminal Velocity</a>
+                </h1>
+            </div>
+              
+              
             <div class = "flex space-x-4"> 
               <a href="/static/test.html" class="text-white bg-gray-700 px-4 py-2 rounded-md hover">Test</a>
               <a href="/landing/" class="text-white bg-gray-700 px-4 py-2 rounded-md">Home</a>
@@ -200,49 +218,25 @@
         <div class="w-1/4 bg-gray-800 p-4 overflow-y-auto">
             <div class="space-y-4">
                 <div>
-                    <button onclick="toggleSubMenu('text-processing-submenu')" 
-                        class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
-                    <i class="fas fa-file-alt mr-2"></i>
-                    Text Processing
-                    </button>
-                    <div id="text-processing-submenu" class="space-y-2 mt-2 hidden">
-                        <button onclick="showContent('content-cat')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
-                        cat
-                        </button>
-                        <button onclick="showContent('content-grep')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
-                        grep
-                        </button>
-                        <button onclick="showContent('content-sed')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
-                        sed
-                        </button>
-                        <button onclick="showContent('content-awk')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
-                        awk
-                        </button>
-                        <button onclick="showContent('content-cut')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
-                        cut
-                        </button>
-                    </div>
-                </div>
-                <div>
                     <button onclick="toggleSubMenu('directory-management-submenu')" 
                         class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
                     <i class="fas fa-folder-open mr-2"></i>
                     Directory Management
                     </button>
                     <div id="directory-management-submenu" class="space-y-2 mt-2 hidden">
-                        <button onclick="showContent('content-ls')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-ls')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="ls">
                         ls
                         </button>
-                        <button onclick="showContent('content-cd')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-cd')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="cd">
                         cd
                         </button>
-                        <button onclick="showContent('content-pwd')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-pwd')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="pwd">
                         pwd
                         </button>
-                        <button onclick="showContent('content-mkdir')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-mkdir')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="mkdir">
                         mkdir
                         </button>
-                        <button onclick="showContent('content-rmdir')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-rmdir')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="rmdir">
                         rmdir
                         </button>
                     </div>
@@ -254,24 +248,49 @@
                     File Management
                     </button>
                     <div id="file-management-submenu" class="space-y-2 mt-2 hidden">
-                        <button onclick="showContent('content-cp')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-cp')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="cp">
                         cp
                         </button>
-                        <button onclick="showContent('content-mv')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-mv')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="mv">
                         mv
                         </button>
-                        <button onclick="showContent('content-rm')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-rm')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="rm">
                         rm
                         </button>
-                        <button onclick="showContent('content-touch')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-touch')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="touch">
                         touch
                         </button>
-                        <button onclick="showContent('content-find')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
+                        <button onclick="showContent('content-find')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="find">
                         find
                         </button>
                     </div>
                 </div>
                 
+                <div>
+                    <button onclick="toggleSubMenu('text-processing-submenu')" 
+                        class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
+                    <i class="fas fa-file-alt mr-2"></i>
+                    Text Processing
+                    </button>
+                    <div id="text-processing-submenu" class="space-y-2 mt-2 hidden">
+                        <button onclick="showContent('content-cat')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="cat">
+                        cat
+                        </button>
+                        <button onclick="showContent('content-grep')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="grep">
+                        grep
+                        </button>
+                        <button onclick="showContent('content-sed')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="sed">
+                        sed
+                        </button>
+                        <button onclick="showContent('content-awk')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="awk">
+                        awk
+                        </button>
+                        <button onclick="showContent('content-cut')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md" data-level-id="cut">
+                        cut
+                        </button>
+                    </div>
+                </div>
+
                 <div>
                   <button onclick="toggleSubMenu('command-of-the-day-submenu')" 
                       class="w-full flex items-center p-4 bg-gray-700 text-white rounded-md">
@@ -279,7 +298,7 @@
                   </button>
                   <div id="command-of-the-day-submenu" class="space-y-2 mt-2 hidden">
                     <button onclick="showContent('content-command-of-the-day')" class="w-full flex items-center p-2 bg-gray-600 text-white rounded-md">
-                    Type commandOfTheDay in the terminal!
+                    Type commandOfTheDay in the terminal! (Note: This is NOT a real Linux command!!)
                     </button>
                   </div>
                 </div>
@@ -288,239 +307,6 @@
         <!-- Main Content -->
         <div class="flex-1 bg-gray-900 p-4 flex">
         <div id="content-sidebar" class="w-1/3 bg-gray-800 p-4 overflow-y-auto hidden">
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-cat" class="content-section hidden">
-                <h2 class="text-green-500 font-bold text-xl">cat Command</h2>
-                <p class="text-white">
-                    <br> The cat command is the simplest command to use when you want to see the contents of a particular file. 
-                    The only issue is that it simply unloads the entire file to your terminal. If you want to navigate around 
-                    a huge file, should use less command alternatively. <br><br>
-                </p>
-                <p class="text-white font-bold italic">
-                    My cat refuses to get on the terminal. Guess she doesn't like the cat command.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
-                <p class="text-white italic">Syntax: cat [option] [file]</p>
-                <p class="text-white">
-                    [option] represents various command-line options. [file] represents the name of the file to be processed.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
-                <p class="text-white">
-                    1. -n: introduces line numbers, making it convenient to identify and reference specific lines within the file.<br> 
-                    2. -s: comes in handy when dealing with files containing repeated empty lines. It suppresses 
-                    these repetitions, providing a cleaner output.<br>
-                    3. -E: used to highlight the end of each line.<br>
-                    4. -v: creates non-printing characters visible (except for tabs and line breaks). <br>
-                    5. -T: shows tabs as ^I. <br><br>
-                </p>
-                <p class="text-green-500 font-bold">HANDY LINK</p>
-                <p class="text-white">
-                    Link to refer: <a href="https://www.geeksforgeeks.org/basic-linux-commands/#13-cat-command-in-linux" 
-                        class="text-blue-400 hover:underline" target="_blank">cat command</a></br> </br>
-                </p>
-                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
-
-                <div class="question-container">
-                  <p class="text-white">You have a text file that was sent to you by your friend. 
-                    It is labeled as "decryptionpassword.txt".
-                    You want to see the contents of the file in such a way that it is easy to read.
-                    What command would you use to do this?
-                    <!-- Correct answer: cat -E decryptionpassword.txt -->
-                  </p> 
-                  <br> </br>
-                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
-                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
-                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
-                </div>
-
-                <br>
-                <hr>
-                <br> 
-                <h2 class="text-green-500 font-bold text-xl">tac Command</h2>
-                <p class="text-white">
-                    <br> The tac command concatenates and displays the contents of a file, but it does so in reverse order 
-                    — it outputs the last line of the file first, the second-to-last line second, and so on. <br><br>
-                </p>
-                
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-grep" class="content-section hidden">
-                <h2 class="text-green-500 font-bold text-xl">grep Command</h2>
-                <p class="text-white">
-                    <br> The grep command is used to find a specific string in a series of outputs. <br><br>
-                </p>
-                <p class="text-white font-bold italic">
-                    I grep through life looking for meaning, but sometimes I just get lost in the pattern.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
-                <p class="text-white italic">Syntax: grep [options] [pattern] [files]</p>
-                <p class="text-white">
-                    [options]: These are command-line flags that modify the behavior of grep. [pattern]: This is the regular 
-                    expression you want to search for. [file]: This is the name of the file you want to search within. 
-                    You can specify multiple files for simultaneous searching.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
-                <p class="text-white">
-                    1. -c: This prints only a count of the lines that match a pattern. <br>
-                    2. -h: This displays the matched lines, but do not display the filenames.<br>
-                    3. -l: This displays a list of file names only. <br>
-                    4. -n: This displays the matched lines and their line numbers. <br><br>
-                </p>
-                <p class="text-green-500 font-bold">HANDY LINK</p>
-                <p class="text-white">
-                    Link to refer: <a href="https://www.geeksforgeeks.org/basic-linux-commands/#17-grep-command-in-linux" 
-                        class="text-blue-400 hover:underline" target="_blank">grep command</a></br> </br>
-                </p>
-                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
-                <div class="question-container">
-                  <p class="text-white">
-                    There is a file named "passwords.txt" that contains a list of passwords. It has 
-                    multiple lines of unnecessary information. You want the password with the string "AcD" in it.
-                    What command would you use to do this?
-                    <!-- Correct answer: grep "AcD" passwords.txt -->
-                  </p> 
-                  <br> </br>
-                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
-                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
-                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
-                </div>
-
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-sed" class="content-section hidden">
-                <h2 class="text-green-500 font-bold text-xl">sed Command</h2>
-                <p class="text-white">
-                    <br> The sed command is a non-interactive text editor that allows you to perform basic text transformations on an 
-                    input stream (a file or input from a pipe). It's often used for tasks like searching and replacing text, deleting 
-                    lines, inserting new lines, and more. <br><br>
-                </p>
-                <p class="text-white font-bold italic">
-                    I used sed to trim my lines, but it looks like I still need to make some more cuts.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
-                <p class="text-white italic">Syntax: sed [options] [command] [file]</p>
-                <p class="text-white">
-                    [options]: Optional flags to modify sed behavior. [command]: The operation or transformation 
-                    you want to perform (such as substitution, deletion, etc). [file]: The file or files on which you want to perform 
-                    the operation. If no file is specified, sed will read from the standard input.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
-                <p class="text-white">
-                    1. -i: Edit files in place. <br>
-                    2. -n: Suppress automatic printing of pattern space. <br>
-                    3. -e: Allows you to add multiple commands. <br>
-                    4. -f: Specify a file with sed commands to execute. <br><br>
-                </p>
-                <p class="text-green-500 font-bold">HANDY LINK</p>
-                <p class="text-white">
-                    Link to refer: <a href="https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/" 
-                        class="text-blue-400 hover:underline" target="_blank">sed command</a></br> </br>
-                </p>
-                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
-                <div class="question-container">
-                  <p class="text-white">You have a file called "data.txt" and want to replace every occurrence 
-                    of the word "apple" with "orange". 
-                    What command would you use to achieve this?
-                    <!-- Correct answer: sed 's/apple/orange/g' data.txt -->
-                  </p> 
-                  <br> </br>
-                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
-                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
-                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
-                </div>
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-awk" class="content-section hidden">
-                <h2 class="text-green-500 font-bold text-xl">awk Command</h2>
-                <p class="text-white">
-                    <br> The awk command is a powerful text processing tool in Unix/Linux used for pattern scanning and processing. 
-                    It allows you to manipulate data and generate reports by processing input line by line, which can be used for 
-                    tasks like searching, extracting, and modifying text from files or streams.<br><br>
-                </p>
-                <p class="text-white font-bold italic">
-                    Awk is like a Swiss army knife for text, making it easy to dissect, rearrange, and analyze data.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
-                <p class="text-white italic">Syntax: awk [options] '[pattern] {action}' [file]</p>
-                <p class="text-white">
-                    [options]: Optional flags to modify awk behavior. [pattern]: The condition or pattern to match. [action]: 
-                    The operation to perform on lines that match the pattern. [file]: The file or files to process. If no file is 
-                    specified, `awk` reads from the standard input.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
-                <p class="text-white">
-                    1. -F: Specify a custom field separator (default is whitespace).<br>
-                    2. -v: Set variables to be used within awk.<br>
-                    3. -f: Read awk commands from a file.<br>
-                    4. -W: Enable or disable specific features.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">HANDY LINK</p>
-                <p class="text-white">
-                    Link to refer: <a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" 
-                        class="text-blue-400 hover:underline" target="_blank">awk command</a></br> </br>
-                </p>
-                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
-                <div class="question-container">
-                  <p class="text-white">You have a file called "sales.txt" with data in columns (e.g., product name, 
-                    price, quantity). You want to print only the second and third columns (price and quantity). 
-                    What command would you use?
-                    <!-- Correct answer: awk '{print $2, $3}' sales.txt -->
-                  </p> 
-                  <br> </br>
-                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
-                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
-                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
-                </div>
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div id="content-cut" class="content-section hidden">
-                <h2 class="text-green-500 font-bold text-xl">cut Command</h2>
-                <p class="text-white">
-                    <br>The cut command is used to extract sections from each line of a file or input data. It allows you to 
-                    cut out columns, characters, or fields from a file and display the desired portion. This command is especially 
-                    useful when you want to extract specific data from structured files, like CSV or tab-delimited files.<br><br>
-                </p>
-                <p class="text-white font-bold italic">
-                    I tried to use the cut command on my life, but it just left me feeling cut off!<br><br>
-                </p>
-                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
-                <p class="text-white italic">Syntax: cut [options] [file]</p>
-                <p class="text-white">
-                    [options] represents various command-line options, and [file] is the name of the file to be processed. If no 
-                    file is provided, it will read from the standard input.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
-                <p class="text-white">
-                    1. -f: Specify which fields to cut (fields are typically separated by a delimiter).<br>
-                    2. -d: Specify the delimiter (default is tab).<br>
-                    3. -c: Cut based on character positions.<br>
-                    4. -s: Suppress lines that do not contain the delimiter.<br><br>
-                </p>
-                <p class="text-green-500 font-bold">HANDY LINK</p>
-                <p class="text-white">
-                    Link to refer: <a href="https://www.geeksforgeeks.org/cut-command-linux-examples/" 
-                        class="text-blue-400 hover:underline" target="_blank">cut command</a></br> </br>
-                </p>
-                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
-                <div class="question-container">
-                  <p class="text-white">You have a file called "employees.csv" with data in comma-separated columns. 
-                    You want to display only the first and third columns (employee name and department). 
-                    What command would you use?
-                    <!-- Correct answer: cut -d',' -f1,3 employees.csv -->
-                  </p> 
-                  <br> </br>
-                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
-                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
-                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
-                </div>
-            </div>
-            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <div id="content-ls" class="content-section hidden">
                 <h2 class="text-green-500 font-bold text-xl">ls Command</h2>
@@ -936,7 +722,244 @@
             </div>
             
             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-          </div>
+            
+             <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+             <div id="content-cat" class="content-section hidden">
+                <h2 class="text-green-500 font-bold text-xl">cat Command</h2>
+                <p class="text-white">
+                    <br> The cat command is the simplest command to use when you want to see the contents of a particular file. 
+                    The only issue is that it simply unloads the entire file to your terminal. If you want to navigate around 
+                    a huge file, should use less command alternatively. <br><br>
+                </p>
+                <p class="text-white font-bold italic">
+                    My cat refuses to get on the terminal. Guess she doesn't like the cat command.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+                <p class="text-white italic">Syntax: cat [option] [file]</p>
+                <p class="text-white">
+                    [option] represents various command-line options. [file] represents the name of the file to be processed.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+                <p class="text-white">
+                    1. -n: introduces line numbers, making it convenient to identify and reference specific lines within the file.<br> 
+                    2. -s: comes in handy when dealing with files containing repeated empty lines. It suppresses 
+                    these repetitions, providing a cleaner output.<br>
+                    3. -E: used to highlight the end of each line.<br>
+                    4. -v: creates non-printing characters visible (except for tabs and line breaks). <br>
+                    5. -T: shows tabs as ^I. <br><br>
+                </p>
+                <p class="text-green-500 font-bold">HANDY LINK</p>
+                <p class="text-white">
+                    Link to refer: <a href="https://www.geeksforgeeks.org/basic-linux-commands/#13-cat-command-in-linux" 
+                        class="text-blue-400 hover:underline" target="_blank">cat command</a></br> </br>
+                </p>
+                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+
+                <div class="question-container">
+                  <p class="text-white">You have a text file that was sent to you by your friend. 
+                    It is labeled as "decryptionpassword.txt".
+                    You want to see the contents of the file in such a way that it is easy to read.
+                    What command would you use to do this?
+                    <!-- Correct answer: cat -E decryptionpassword.txt -->
+                  </p> 
+                  <br> </br>
+                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
+                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
+                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
+                </div>
+
+                <br>
+                <hr>
+                <br> 
+                <h2 class="text-green-500 font-bold text-xl">tac Command</h2>
+                <p class="text-white">
+                    <br> The tac command concatenates and displays the contents of a file, but it does so in reverse order 
+                    — it outputs the last line of the file first, the second-to-last line second, and so on. <br><br>
+                </p>
+                
+            </div>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <div id="content-grep" class="content-section hidden">
+                <h2 class="text-green-500 font-bold text-xl">grep Command</h2>
+                <p class="text-white">
+                    <br> The grep command is used to find a specific string in a series of outputs. <br><br>
+                </p>
+                <p class="text-white font-bold italic">
+                    I grep through life looking for meaning, but sometimes I just get lost in the pattern.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+                <p class="text-white italic">Syntax: grep [options] [pattern] [files]</p>
+                <p class="text-white">
+                    [options]: These are command-line flags that modify the behavior of grep. [pattern]: This is the regular 
+                    expression you want to search for. [file]: This is the name of the file you want to search within. 
+                    You can specify multiple files for simultaneous searching.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+                <p class="text-white">
+                    1. -c: This prints only a count of the lines that match a pattern. <br>
+                    2. -h: This displays the matched lines, but do not display the filenames.<br>
+                    3. -l: This displays a list of file names only. <br>
+                    4. -n: This displays the matched lines and their line numbers. <br><br>
+                </p>
+                <p class="text-green-500 font-bold">HANDY LINK</p>
+                <p class="text-white">
+                    Link to refer: <a href="https://www.geeksforgeeks.org/basic-linux-commands/#17-grep-command-in-linux" 
+                        class="text-blue-400 hover:underline" target="_blank">grep command</a></br> </br>
+                </p>
+                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+                <div class="question-container">
+                  <p class="text-white">
+                    There is a file named "passwords.txt" that contains a list of passwords. It has 
+                    multiple lines of unnecessary information. You want the password with the string "AcD" in it.
+                    What command would you use to do this?
+                    <!-- Correct answer: grep "AcD" passwords.txt -->
+                  </p> 
+                  <br> </br>
+                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
+                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
+                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
+                </div>
+
+            </div>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <div id="content-sed" class="content-section hidden">
+                <h2 class="text-green-500 font-bold text-xl">sed Command</h2>
+                <p class="text-white">
+                    <br> The sed command is a non-interactive text editor that allows you to perform basic text transformations on an 
+                    input stream (a file or input from a pipe). It's often used for tasks like searching and replacing text, deleting 
+                    lines, inserting new lines, and more. <br><br>
+                </p>
+                <p class="text-white font-bold italic">
+                    I used sed to trim my lines, but it looks like I still need to make some more cuts.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+                <p class="text-white italic">Syntax: sed [options] [command] [file]</p>
+                <p class="text-white">
+                    [options]: Optional flags to modify sed behavior. [command]: The operation or transformation 
+                    you want to perform (such as substitution, deletion, etc). [file]: The file or files on which you want to perform 
+                    the operation. If no file is specified, sed will read from the standard input.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+                <p class="text-white">
+                    1. -i: Edit files in place. <br>
+                    2. -n: Suppress automatic printing of pattern space. <br>
+                    3. -e: Allows you to add multiple commands. <br>
+                    4. -f: Specify a file with sed commands to execute. <br><br>
+                </p>
+                <p class="text-green-500 font-bold">HANDY LINK</p>
+                <p class="text-white">
+                    Link to refer: <a href="https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/" 
+                        class="text-blue-400 hover:underline" target="_blank">sed command</a></br> </br>
+                </p>
+                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+                <div class="question-container">
+                  <p class="text-white">You have a file called "data.txt" and want to replace every occurrence 
+                    of the word "apple" with "orange". 
+                    What command would you use to achieve this?
+                    <!-- Correct answer: sed 's/apple/orange/g' data.txt -->
+                  </p> 
+                  <br> </br>
+                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
+                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
+                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
+                </div>
+            </div>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <div id="content-awk" class="content-section hidden">
+                <h2 class="text-green-500 font-bold text-xl">awk Command</h2>
+                <p class="text-white">
+                    <br> The awk command is a powerful text processing tool in Unix/Linux used for pattern scanning and processing. 
+                    It allows you to manipulate data and generate reports by processing input line by line, which can be used for 
+                    tasks like searching, extracting, and modifying text from files or streams.<br><br>
+                </p>
+                <p class="text-white font-bold italic">
+                    Awk is like a Swiss army knife for text, making it easy to dissect, rearrange, and analyze data.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+                <p class="text-white italic">Syntax: awk [options] '[pattern] {action}' [file]</p>
+                <p class="text-white">
+                    [options]: Optional flags to modify awk behavior. [pattern]: The condition or pattern to match. [action]: 
+                    The operation to perform on lines that match the pattern. [file]: The file or files to process. If no file is 
+                    specified, `awk` reads from the standard input.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+                <p class="text-white">
+                    1. -F: Specify a custom field separator (default is whitespace).<br>
+                    2. -v: Set variables to be used within awk.<br>
+                    3. -f: Read awk commands from a file.<br>
+                    4. -W: Enable or disable specific features.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">HANDY LINK</p>
+                <p class="text-white">
+                    Link to refer: <a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/" 
+                        class="text-blue-400 hover:underline" target="_blank">awk command</a></br> </br>
+                </p>
+                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+                <div class="question-container">
+                  <p class="text-white">You have a file called "sales.txt" with data in columns (e.g., product name, 
+                    price, quantity). You want to print only the second and third columns (price and quantity). 
+                    What command would you use?
+                    <!-- Correct answer: awk '{print $2, $3}' sales.txt -->
+                  </p> 
+                  <br> </br>
+                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
+                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
+                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
+                </div>
+            </div>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <div id="content-cut" class="content-section hidden">
+                <h2 class="text-green-500 font-bold text-xl">cut Command</h2>
+                <p class="text-white">
+                    <br>The cut command is used to extract sections from each line of a file or input data. It allows you to 
+                    cut out columns, characters, or fields from a file and display the desired portion. This command is especially 
+                    useful when you want to extract specific data from structured files, like CSV or tab-delimited files.<br><br>
+                </p>
+                <p class="text-white font-bold italic">
+                    I tried to use the cut command on my life, but it just left me feeling cut off!<br><br>
+                </p>
+                <p class="text-green-500 font-bold">NORMAL OPERATION</p>
+                <p class="text-white italic">Syntax: cut [options] [file]</p>
+                <p class="text-white">
+                    [options] represents various command-line options, and [file] is the name of the file to be processed. If no 
+                    file is provided, it will read from the standard input.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">COMMON OPTIONS</p>
+                <p class="text-white">
+                    1. -f: Specify which fields to cut (fields are typically separated by a delimiter).<br>
+                    2. -d: Specify the delimiter (default is tab).<br>
+                    3. -c: Cut based on character positions.<br>
+                    4. -s: Suppress lines that do not contain the delimiter.<br><br>
+                </p>
+                <p class="text-green-500 font-bold">HANDY LINK</p>
+                <p class="text-white">
+                    Link to refer: <a href="https://www.geeksforgeeks.org/cut-command-linux-examples/" 
+                        class="text-blue-400 hover:underline" target="_blank">cut command</a></br> </br>
+                </p>
+                <h2 class="text-green-500 text-xl">QUESTIONS</h2>
+                <div class="question-container">
+                  <p class="text-white">You have a file called "employees.csv" with data in comma-separated columns. 
+                    You want to display only the first and third columns (employee name and department). 
+                    What command would you use?
+                    <!-- Correct answer: cut -d',' -f1,3 employees.csv -->
+                  </p> 
+                  <br> </br>
+                  <input type="text" class="answer-input" placeholder="Write your answer here"> <br></br>
+                  <button class="bg-green-500 text-white font-bold px-4 py-2 rounded hover:bg-green-700 check-answer">Check Answer</button>
+                  <button class="next-level-button bg-blue-500 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 mt-2 hidden">Next Level</button>
+                </div>
+            </div>
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+        </div>
+
+        <!-- Level Unlock Script -->
+        <script src="/static/level_unlock.js"></script>
+
          <!-- Terminal -->
          <div class="w-1/3 bg-black text-white p-4 overflow-y-auto" id="terminal">
           <div id="output"></div>
@@ -951,5 +974,6 @@
           </div>
         </div>
       
+            
     </body>
 </html>

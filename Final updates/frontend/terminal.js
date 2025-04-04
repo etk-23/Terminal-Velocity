@@ -172,6 +172,41 @@ document.addEventListener('DOMContentLoaded', function(){
         const command = args[0];                  // First word == command name
         const restArgs = args.slice(1);           // Remaining words == arguments
 
+                // Easter eggs before normal command handling
+        if (command === "sudo make me a sandwich") {
+            echoOutput("> You are not authorized to make sandwiches. 🍞 Try asking politely.");
+            return;
+        }
+        
+        if (command === "sl") {
+            echoOutput("> Did you mean 'ls'? 👀 Trains don’t run on this terminal. 🚂");
+            return;
+        }
+        
+        if (command === "hack the mainframe") {
+            echoOutput("> 💻 Hacking initiated...");
+            setTimeout(() => echoOutput("> 🔓 Mainframe access granted!"), 1000);
+            setTimeout(() => echoOutput("> 💥 Just kidding. You're not that cool."), 2000);
+            return;
+        }
+        
+        if (command === "matrix") {
+            echoOutput("> You take the blue pill...");
+            setTimeout(() => echoOutput("> You wake up in your bed and believe whatever you want to believe."), 1500);
+            return;
+        }
+        
+        if (command === "help i'm stuck" || command === "help i’m stuck") {
+            echoOutput("> Have you tried turning yourself off and on again?");
+            return;
+        }
+        
+        if (command.startsWith("sudo") && command !== "sudo make me a sandwich") {
+            echoOutput("> Nice try. You're not root. 🐱");
+            return;
+        }
+  
+
         // Route command to the appropriate function based on first word
         switch (command){
             case 'help':
@@ -199,7 +234,11 @@ document.addEventListener('DOMContentLoaded', function(){
                 cp(restArgs[0], restArgs[1]); // Pass first two arguments
                 break;
             case 'rm':
-                rm(restArgs[0]); // Pass first argument
+                if (restArgs.join(' ') === '-rf') {
+                    rmrfEasterEgg();
+                } else {
+                    rm(restArgs[0]);
+                }
                 break;
             case 'mkdir':
                 mkdir(restArgs[0]); // Pass first argument
@@ -915,6 +954,48 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
+    // rm -rf EASTER EGG!!
+    function rmrfEasterEgg() {
+        const terminalContainer = document.querySelector(".terminal-area") || document.getElementById("terminal");
+    
+        echoOutput("<span class='not-completed'>⚠️⚠️ SYSTEM CRITICAL COMMAND INITIATED ⚠️⚠️</span>");
+        
+        const dramaticLines = [
+            "🔁 Overwriting /etc...",
+            "💣 Injecting fork bombs...",
+            "🚨 Unmounting file systems...",
+            "☢️ NUKING bootloader...",
+            "🔥 SYSTEM FAILURE INITIATED 🔥",
+            "🧨 Self-destruct countdown: 5...",
+            "🧨 Self-destruct countdown: 4...",
+            "🧨 Self-destruct countdown: 3...",
+            "🧨 Self-destruct countdown: 2...",
+            "🧨 Self-destruct countdown: 1...",
+            "💥💥 BOOM! 💥💥",
+            "😅 Just kidding. You're safe... for now."
+        ];
+    
+        let i = 0;
+        let interval = setInterval(() => {
+            if (i < dramaticLines.length) {
+                echoOutput(dramaticLines[i]);
+                i++;
+            } else {
+                clearInterval(interval);
+                if (terminalContainer) {
+                    terminalContainer.classList.remove("destruction-sequence");
+                }
+    
+                // ✅ Show explanation after dramatic lines
+                echoOutput("<br>ℹ️ <strong>What is 'rm -rf'?</strong>");
+                echoOutput("> 'rm' means remove. The '-r' flag removes directories recursively, and '-f' forces deletion without confirmation.");
+                echoOutput("⚠️ <strong>Warning:</strong> On real systems, <code>rm -rf /</code> can wipe your entire system and make it unbootable!");
+            }
+        }, 700);
+    }
+    
+    
+    
     /**  *****$*****$*****$*****$*****$*****$*****$*****$***** MKDIR *****$*****$*****$*****$*****$*****$*****$*****$*****
      * Make Directory - creates a new directory
      * @param {string} arg1 - The directory name to create
@@ -1060,7 +1141,6 @@ document.addEventListener('DOMContentLoaded', function(){
             'uname': 'Displays system information',
             'date': 'Shows the current date and time',
             'ifconfig': 'Displays network interface information',
-            'tty': 'Shows the terminal device name',
             'history': 'Displays command history',
             'tac': 'Displays file contents in reverse line order',
             'rmdir': 'Removes an empty directory',
@@ -1068,8 +1148,7 @@ document.addEventListener('DOMContentLoaded', function(){
             'find': 'Searches for files in a directory hierarchy',
             'sed': 'Stream editor for filtering and transforming text',
             'awk': 'Pattern scanning and processing language',
-            'grep': 'Searches for patterns in text files',
-            'ping': 'Tests network connectivity to a host'
+            'grep': 'Searches for patterns in text files'
         };
         
         // Get the description for the random command
